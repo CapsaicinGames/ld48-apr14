@@ -20,11 +20,6 @@ namespace CapsaicinGames.Shark
 
         void Update()
         {
-            if (SharkNearby())
-            {
-                panicMode = true;
-            }
-
             if (!onBeach && OnTheBeach())
             {
                 onBeach = true;
@@ -44,6 +39,7 @@ namespace CapsaicinGames.Shark
         void FixedUpdate() 
         {
             var direction = CalculateDirection();
+            panicMode = panicMode || direction.sqrMagnitude > 0.15f;
 
             rigidbody.AddForce(direction * fleeForce);
         }
@@ -84,22 +80,6 @@ namespace CapsaicinGames.Shark
             }
 
             return -beach.transform.forward;
-        }
-
-        // Checks to see if a shark is nearby to the swimmer.
-        private bool SharkNearby()
-        {
-            Vector3 offset = shark.transform.position - transform.position;
-            float distance = offset.sqrMagnitude;
-
-            if (distance < proximityTrigger * proximityTrigger)
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }    
         }
 
         // Detects if the swimmer is on the beach or not
