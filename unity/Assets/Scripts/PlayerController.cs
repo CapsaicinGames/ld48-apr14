@@ -59,4 +59,19 @@ public class PlayerController : MonoBehaviour
         
 
 	}
+
+    void OnTriggerEnter(Collider other)
+    {
+        //
+        if (other.gameObject.tag == "Swimmer")
+        {
+            //Destroy(other.gameObject);
+            other.transform.parent = transform;
+            other.gameObject.BroadcastMessage("onGrabbed", SendMessageOptions.DontRequireReceiver);
+            foreach (var col in other.gameObject.GetComponentsInChildren<Collider>())
+            {
+                col.enabled = false;
+            }
+        }
+    }
 }
