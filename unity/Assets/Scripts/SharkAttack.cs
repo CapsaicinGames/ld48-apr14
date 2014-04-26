@@ -24,10 +24,6 @@ public class SharkAttack : MonoBehaviour
         {
             childMesh.renderer.material.color = Color.red;
 
-            gameObject.GetComponent<PlayerController>().enabled = false;
-            rigidbody.useGravity = true;
-            rigidbody.drag = 0.5f;
-
             cameraObject.GetComponent<SharkAttackCamera>().enabled = true;
             cameraObject.GetComponent<FollowCamera>().enabled = false;
         }
@@ -55,7 +51,6 @@ public class SharkAttack : MonoBehaviour
         {
             Time.timeScale = 1f;
             childMesh.renderer.material.color = Color.green;
-            gameObject.GetComponent<PlayerController>().enabled = true;
 
             cameraObject.GetComponent<SharkAttackCamera>().enabled = false;
             cameraObject.GetComponent<FollowCamera>().enabled = true;
