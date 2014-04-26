@@ -3,7 +3,6 @@ using System.Collections;
 
 public class PlayerController : MonoBehaviour 
 {
-    public float steeringSensitivity;
     public float speedScalar;
     public float minSteeringScalar;
     public float maxSteeringScalar;
@@ -12,12 +11,19 @@ public class PlayerController : MonoBehaviour
 
     private Vector3 previousWorldTransform;
 
+    private SharkInput m_input;
+
+    void Start()
+    {
+        m_input = GetComponent<SharkInput>();
+    }
+
 	// Update is called once per frame
 	void FixedUpdate () 
     {
-        float forward = -Input.GetAxis("ForwardAxis");
-        float steeringLR = Input.GetAxis("Horizontal");
-        float steeringUD = Input.GetAxis("Vertical");
+        float forward = m_input.GetSpeed();
+        float steeringLR = m_input.GetHorizontal();
+        float steeringUD = m_input.GetVertical();
 
         if (forward < 0f)
         {
@@ -38,14 +44,14 @@ public class PlayerController : MonoBehaviour
 
         currentSpeedMultiplier *= speedSteeringFactor;
 
-        float pitch = steeringUD * steeringSensitivity * currentSpeedMultiplier;
-        float yaw = steeringLR * steeringSensitivity * currentSpeedMultiplier;
+        float pitch = steeringUD  * currentSpeedMultiplier;
+        float yaw = steeringLR * currentSpeedMultiplier;
         bool isTurning = Mathf.Approximately(pitch, 0f) == false || Mathf.Approximately(yaw, 0f) == false;
         if (isTurning)
         {
-            Vector3 requiredInput = new Vector3(steeringUD * steeringSensitivity * currentSpeedMultiplier, 0, 0);
+            Vector3 requiredInput = new Vector3(pitch, 0, 0);
 
-            Vector3 worldReqInput = transform.TransformDirection(requiredInput) + new Vector3(0, steeringLR * steeringSensitivity * currentSpeedMultiplier, 0);
+            Vector3 worldReqInput = transform.TransformDirection(requiredInput) + new Vector3(0, yaw, 0);
             rigidbody.angularVelocity = worldReqInput;
             previousWorldTransform = worldReqInput;
         }
