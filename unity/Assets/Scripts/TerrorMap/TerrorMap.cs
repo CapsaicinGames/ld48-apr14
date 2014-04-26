@@ -40,6 +40,56 @@ namespace CapsaicinGames.TerrorMap
             }
         }
 
+        // if zero, no terror found.
+        // w is size of terror.
+        public Vector4 CalculateMinimumTerrorDirection(Vector3 fromPos)
+        {
+            var fromGrid = GridFromWorld(fromPos);
+            if (fromGrid == s_invalid)
+            {
+                return Vector4.zero;
+            }
+
+            int centerX = (int)fromGrid.x;
+            int centerY = (int)fromGrid.y;
+
+            float centerTerror = m_map[centerX, centerY];
+
+            Vector3 aways = Vector3.zero;
+            int awaysCount = 0;
+            float maxTerror = 0f;
+
+            for(int deltaX = -1; deltaX <= 2; ++deltaX)
+            {
+                int xIndex = centerX + deltaX;
+                if (xIndex < 0 || xIndex >= m_dimension)
+                {
+                    continue;
+                }
+
+                for(int deltaY = -1; deltaY <= 2; ++deltaY)
+                {
+                    int yIndex = centerY + deltaY;
+                    if (yIndex < 0 || yIndex >= m_dimension)
+                    {
+                        continue;
+                    }
+
+                    float localTerror = m_map[xIndex, yIndex];
+                    if (localTerror > centerTerror)
+                    {
+                        aways -= new Vector3(deltaX, 0f, deltaY).normalized;
+                        ++awaysCount;
+                        maxTerror = Mathf.Max(maxTerror, localTerror);
+                    }
+                }
+            }
+
+            var steer = awaysCount == 0 ? Vector3.zero
+                : aways / (float)awaysCount;
+            return new Vector4(steer.x, steer.y, steer.z, maxTerror);
+        }
+
         //////////////////////////////////////////////////
 
         [SerializeField] float m_mapRadius;
