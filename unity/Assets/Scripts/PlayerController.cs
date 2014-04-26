@@ -3,6 +3,7 @@ using System.Collections;
 
 public class PlayerController : MonoBehaviour 
 {
+    public AnimationCurve m_accelCurve;
     public float speedScalar;
     public Vector2 rotationScalar;
 
@@ -119,7 +120,9 @@ public class PlayerController : MonoBehaviour
     {
         float speedInput = m_input.GetSpeed();
 
-        var desiredForwardForce = speedInput * speedScalar;
+        float currentSpeed = rigidbody.velocity.magnitude;
+        float modifierSpeed = m_accelCurve.Evaluate(currentSpeed);
+        var desiredForwardForce = speedInput * speedScalar * modifierSpeed;
         rigidbody.AddRelativeForce(Vector3.forward * desiredForwardForce);
 
         float pitchSteering = m_input.GetVertical();
