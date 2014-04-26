@@ -22,7 +22,9 @@ public class PlayerController : MonoBehaviour
     public float m_tiltSmoothing;
 
     public AnimationCurve autoLevelForceFromSpeed;
+    public AnimationCurve autoLevelForceFromAngleError;
     public AnimationCurve autoLevelForceFromAngle;
+    public AnimationCurve autoLevelForceFromDepth;
 
     private SharkInput m_input;
     private Vector2 m_angularVelocity;
@@ -157,7 +159,7 @@ public class PlayerController : MonoBehaviour
         {
             float pitchSteering = m_input.GetVertical();
 
-            float levelingVel = LevelingVel(currentSpeed);
+            float levelingVel = LevelingVel(currentSpeed, pitchSteering);
             
             float pitchFadeOff = PitchFadeOffProportion(pitchSteering);
             var desiredPitchVel = 
@@ -175,17 +177,25 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    float LevelingVel(float currentSpeed)
+    float LevelingVel(float currentSpeed, float pitchRequest)
     {
         var speedLevelingScalar = autoLevelForceFromSpeed.Evaluate(currentSpeed);
         
         float unlevelness = DegreesFromHorizontal();
-        var angleLevelingScalar = autoLevelForceFromAngle.Evaluate(Mathf.Abs(unlevelness));
+        var angleLevelingScalar = 
+            autoLevelForceFromAngleError.Evaluate(Mathf.Abs(unlevelness));
+
+        float highAngleScalar = autoLevelForceFromAngle.Evaluate(Mathf.Abs(unlevelness));
+
+        // if heading towards surface, level us off faster
+        float depthScalar = unlevelness < 0f && pitchRequest == 0f
+            ? autoLevelForceFromDepth.Evaluate(transform.position.y)
+            : 1f;
         
-        float levelingVel = angleLevelingScalar * speedLevelingScalar
+        float levelingVel = 
+            angleLevelingScalar * speedLevelingScalar * highAngleScalar * depthScalar
             * (unlevelness < 0f ? -1f : 1f);
 
-        Debug.Log("unlevel " + unlevelness + " at speed " + currentSpeed + " gives " + levelingVel);
         return levelingVel;
     }
 
