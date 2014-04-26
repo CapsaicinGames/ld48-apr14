@@ -1,5 +1,5 @@
 using UnityEngine;
-using System.Collections.Generic;
+using System.Collections;
 
 namespace CapsaicinGames.Shark 
 {
@@ -14,6 +14,9 @@ namespace CapsaicinGames.Shark
         public float fleeForce = 4.0f;
 
         public bool panicMode = false;
+        public bool onBeach = false;
+
+        private float beachVanishTimer = 20000;
 
         //////////////////////////////////////////////////
 
@@ -24,9 +27,10 @@ namespace CapsaicinGames.Shark
                 panicMode = true;
             }
 
-            if (OnTheBeach())
+            if (!onBeach && OnTheBeach())
             {
-                Destroy(this);
+                onBeach = true;
+                StartCoroutine(Escape());
             }
         }
 
@@ -102,8 +106,17 @@ namespace CapsaicinGames.Shark
 
         // Detects if the swimmer is on the beach or not
         private bool OnTheBeach()
-        {           
-            return false;
+        {
+            var beachTowardsSwimmer = (transform.position - beach.transform.position).normalized;
+
+            return Vector3.Dot(beachTowardsSwimmer, beach.transform.forward) < 0;
+        }
+
+        // Destroy the swimmer object as they have escaped to the beach
+        IEnumerator Escape()
+        {
+            yield return new WaitForSeconds(3.0f);
+            Destroy(gameObject);
         }
 
         // When the swimmer is grabbed by a shark they are destroyed
