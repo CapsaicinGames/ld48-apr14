@@ -253,8 +253,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ea53d04bfb49384f9bf2d0af8cb00e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  steeringSensitivity: 3
-  speedScalar: 60
+  speedScalar: 10
   minSteeringScalar: 1
   maxSteeringScalar: 5
   speedSteeringFactor: .300000012
