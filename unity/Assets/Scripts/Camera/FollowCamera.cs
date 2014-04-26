@@ -34,7 +34,9 @@ public class FollowCamera : MonoBehaviour {
 
         // Calculate the current rotation angles
         var wantedRotationAngle = target.eulerAngles.y;
-        var wantedHeight = target.position.y + height;
+        // Project out the back of the fish and aim to have the camera clamped to the height of that
+        // looking back at the fish
+        var wantedHeight = target.TransformPoint(0.0f, 0.0f, -6.0f).y + height;
 
         var currentRotationAngle = transform.eulerAngles.y;
         var currentHeight = transform.position.y;

@@ -43,7 +43,6 @@ namespace CapsaicinGames.Shark
                 newSwimmer.transform.parent = transform;
                 newSwimmer.transform.position = swimmerPos;
                 newSwimmer.transform.localScale -= new Vector3(shrinkScalar, shrinkScalar, shrinkScalar);
-                Debug.Log(newSwimmer.transform.localScale);
                 
                 --swimmersToGenerate;
             }
