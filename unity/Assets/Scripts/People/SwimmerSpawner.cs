@@ -38,8 +38,12 @@ namespace CapsaicinGames.Shark
                 var planePos = Random.insideUnitCircle * m_regionRadius;
                 var swimmerPos = new Vector3(planePos.x, 0f, planePos.y);
 
+                float shrinkScalar = Random.Range(0f, 0.6f);
+
                 newSwimmer.transform.parent = transform;
                 newSwimmer.transform.position = swimmerPos;
+                newSwimmer.transform.localScale -= new Vector3(shrinkScalar, shrinkScalar, shrinkScalar);
+                Debug.Log(newSwimmer.transform.localScale);
                 
                 --swimmersToGenerate;
             }
