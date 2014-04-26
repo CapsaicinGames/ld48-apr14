@@ -15,7 +15,20 @@ public class SharkAttack : MonoBehaviour
             gameObject.GetComponent<PlayerController>().enabled = false;
             rigidbody.useGravity = true;
             rigidbody.drag = 0.5f;
-            Time.timeScale = moneyShotTimeScale;
+            bool haveSwimmer = false;
+            foreach (var child in gameObject.GetComponentsInChildren<Transform>())
+            {
+                if (child.tag == "Swimmer")
+                {
+                    haveSwimmer = true;
+                    childMesh.renderer.material.color = Color.yellow;
+                }
+            }
+
+            if (haveSwimmer)
+            {
+                Time.timeScale = moneyShotTimeScale;
+            }
 
         }
         else
