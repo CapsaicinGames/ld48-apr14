@@ -20,7 +20,7 @@ public class SharkInput : MonoBehaviour
         }
         else
         {
-            return Input.GetAxis("ForwardAxis");
+            return -Input.GetAxis("ForwardAxis");
         }
     }
 
