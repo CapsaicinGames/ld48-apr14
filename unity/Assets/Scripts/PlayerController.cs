@@ -70,6 +70,10 @@ public class PlayerController : MonoBehaviour
             {
                 col.enabled = false;
             }
+            foreach (var rb in other.gameObject.GetComponentsInChildren<Rigidbody>())
+            {
+                Destroy(rb);
+            }
         }
     }
 }

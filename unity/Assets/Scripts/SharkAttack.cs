@@ -6,10 +6,17 @@ public class SharkAttack : MonoBehaviour
     public GameObject childMesh;
     public float moneyShotTimeScale;
 
+    private bool performedEat;
+
+    void Start()
+    {
+        performedEat = false;
+    }
+
 	// Update is called once per frame
 	void FixedUpdate ()
     {
-	    if (rigidbody.position.y > 0)
+        if (rigidbody.position.y > 0)
         {
             childMesh.renderer.material.color = Color.red;
             gameObject.GetComponent<PlayerController>().enabled = false;
@@ -22,6 +29,7 @@ public class SharkAttack : MonoBehaviour
                 {
                     haveSwimmer = true;
                     childMesh.renderer.material.color = Color.yellow;
+                    performedEat = true; // this will possibly change to on player action
                 }
             }
 
@@ -38,6 +46,18 @@ public class SharkAttack : MonoBehaviour
             gameObject.GetComponent<PlayerController>().enabled = true;
             rigidbody.useGravity = false;
             rigidbody.drag = 2f;
+
+            if (performedEat)
+            {
+                foreach (var child in gameObject.GetComponentsInChildren<Transform>())
+                {
+                    if (child.tag == "Swimmer")
+                    {
+                        Destroy(child.gameObject);
+                    }
+                }
+                performedEat = false;
+            }
         }
 	}
 }
