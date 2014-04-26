@@ -221,7 +221,7 @@ Renderer:
   m_LightmapIndex: 255
   m_LightmapTilingOffset: {x: 1, y: 1, z: 0, w: 0}
   m_Materials:
-  - {fileID: 0}
+  - {fileID: 2100000, guid: e956bfb0c6c159e49b70f1ee2f6c418d, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_UseLightProbes: 0
@@ -242,7 +242,7 @@ Renderer:
   m_LightmapIndex: 255
   m_LightmapTilingOffset: {x: 1, y: 1, z: 0, w: 0}
   m_Materials:
-  - {fileID: 10302, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: e956bfb0c6c159e49b70f1ee2f6c418d, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_UseLightProbes: 0
@@ -386,9 +386,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   childMesh: {fileID: 100010}
   cameraObject: {fileID: 100002}
+  gibbObject: {fileID: 100002, guid: 2d2391ce4558fb74e9eed719cbcc7543, type: 2}
   moneyShotTimeScale: .25
   YoffsetNoControl: 0
   YoffsetAttack: 2
+  gibbsPerSwimmer: 30
+  gibbLife: 15
+  gibbRadius: 8
 --- !u!114 &11400004
 MonoBehaviour:
   m_ObjectHideFlags: 1
