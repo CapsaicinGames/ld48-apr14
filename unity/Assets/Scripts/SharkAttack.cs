@@ -69,7 +69,7 @@ public class SharkAttack : MonoBehaviour
         // No swimming outside of the sea
         if (rigidbody.position.y > YoffsetNoControl)
         {
-            childMesh.renderer.material.color = Color.red;
+            //childMesh.renderer.material.color = Color.red;
 
         }
 
@@ -85,7 +85,7 @@ public class SharkAttack : MonoBehaviour
                 if (child.tag == "Swimmer")
                 {
                     haveSwimmer = true;
-                    childMesh.renderer.material.color = Color.yellow;
+                    //childMesh.renderer.material.color = Color.yellow;
                 }
             }
 
@@ -98,7 +98,7 @@ public class SharkAttack : MonoBehaviour
         if (rigidbody.position.y <= YoffsetNoControl)
         {
             Time.timeScale = 1f;
-            childMesh.renderer.material.color = Color.green;
+            //childMesh.renderer.material.color = Color.green;
             cameraObject.GetComponent<SharkAttackCamera>().enabled = false;
             cameraObject.GetComponent<FollowCamera>().enabled = true;
         }
