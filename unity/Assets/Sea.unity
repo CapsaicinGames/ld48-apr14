@@ -269,6 +269,10 @@ Prefab:
       propertyPath: m_LocalRotation.w
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 11400000, guid: 358704f9870b64f5db74c4f089c96659, type: 2}
+      propertyPath: m_regionRadius
+      value: 40
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 358704f9870b64f5db74c4f089c96659, type: 2}
   m_RootGameObject: {fileID: 799885475}
@@ -416,7 +420,7 @@ Transform:
   m_PrefabInternal: {fileID: 145682197}
   m_GameObject: {fileID: 536592791}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 2.45000005}
+  m_LocalPosition: {x: 1.02318154e-12, y: -.527861118, z: 2.44999695}
   m_LocalScale: {x: 1, y: 1, z: .100000001}
   m_Children: []
   m_Father: {fileID: 1486548644}
@@ -676,8 +680,8 @@ Transform:
   m_PrefabInternal: {fileID: 145682197}
   m_GameObject: {fileID: 617113650}
   m_LocalRotation: {x: -2.41058018e-08, y: -.988993287, z: -.14796035, w: 1.6112746e-07}
-  m_LocalPosition: {x: 2.55821504e-07, y: .270999312, z: .267501831}
-  m_LocalScale: {x: .313948244, y: 1, z: 1.54071629}
+  m_LocalPosition: {x: 2.4155969e-07, y: .429501057, z: .223739624}
+  m_LocalScale: {x: .313948244, y: .882224321, z: 2.9728024}
   m_Children: []
   m_Father: {fileID: 1096386815}
 --- !u!23 &617113652
@@ -1027,7 +1031,7 @@ Transform:
   m_PrefabInternal: {fileID: 145682197}
   m_GameObject: {fileID: 1096386814}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: -.644369125, z: -0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 683867524}
@@ -1041,7 +1045,6 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 1486548644}
-  - 65: {fileID: 1486548642}
   - 114: {fileID: 1486548641}
   - 114: {fileID: 1486548640}
   - 54: {fileID: 1486548639}
@@ -1103,6 +1106,21 @@ MonoBehaviour:
     m_PostInfinity: 2
   speedScalar: 60
   rotationScalar: {x: 20, y: 20}
+  rotationCoefficentBySpeed:
+    serializedVersion: 2
+    m_Curve:
+    - time: 1
+      value: .100371756
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    - time: 7.9000001
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
   minMaxPitch: {x: -60, y: 70}
   pitchFadeOffWindow: 20
   rightingForce: 2
@@ -1128,16 +1146,46 @@ MonoBehaviour:
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
-  autoLevelForceFromAngle:
+  autoLevelForceFromAngleError:
     serializedVersion: 2
     m_Curve:
     - time: 0
       value: 0
-      inSlope: 0
-      outSlope: 0
+      inSlope: .822292805
+      outSlope: .822292805
       tangentMode: 0
     - time: 20
       value: 15
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+  autoLevelForceFromAngle:
+    serializedVersion: 2
+    m_Curve:
+    - time: 10
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    - time: 34.5
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+  autoLevelForceFromDepth:
+    serializedVersion: 2
+    m_Curve:
+    - time: -6.49598169
+      value: 0
+      inSlope: 6.2619977
+      outSlope: 6.2619977
+      tangentMode: 0
+    - time: -2.49756098
+      value: 10
       inSlope: 0
       outSlope: 0
       tangentMode: 0
@@ -1156,19 +1204,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_steeringSensitivity: 3
---- !u!65 &1486548642
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 6500000, guid: f56d31d0c30fe86409d8d9ea0a38843f,
-    type: 2}
-  m_PrefabInternal: {fileID: 145682197}
-  m_GameObject: {fileID: 1486548638}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!4 &1486548644
 Transform:
   m_ObjectHideFlags: 0
