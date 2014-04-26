@@ -190,7 +190,6 @@ public class PlayerController : MonoBehaviour
         float propIntoFadeOffWindow = 
             Mathf.InverseLerp(pitchFadeOffWindow, 0, pitchIntoFadeWindow);
         
-        Debug.Log("at angle " + currentPitch + " gives fadeoff " + propIntoFadeOffWindow);
         return propIntoFadeOffWindow;
     }
 }
