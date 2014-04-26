@@ -5,6 +5,8 @@ public class SharkAttack : MonoBehaviour
 {
     public GameObject childMesh;
     public float moneyShotTimeScale;
+    public float YoffsetNoControl;
+    public float YoffsetAttack;
 
     private bool performedEat;
 
@@ -16,12 +18,16 @@ public class SharkAttack : MonoBehaviour
 	// Update is called once per frame
 	void FixedUpdate ()
     {
-        if (rigidbody.position.y > 0)
+        if (rigidbody.position.y > YoffsetNoControl)
         {
             childMesh.renderer.material.color = Color.red;
             gameObject.GetComponent<PlayerController>().enabled = false;
             rigidbody.useGravity = true;
             rigidbody.drag = 0.5f;
+        }
+
+        if (rigidbody.position.y > YoffsetAttack)
+        {
             bool haveSwimmer = false;
             foreach (var child in gameObject.GetComponentsInChildren<Transform>())
             {
@@ -39,7 +45,8 @@ public class SharkAttack : MonoBehaviour
             }
 
         }
-        else
+
+        if (rigidbody.position.y <= YoffsetNoControl)
         {
             Time.timeScale = 1f;
             childMesh.renderer.material.color = Color.green;
