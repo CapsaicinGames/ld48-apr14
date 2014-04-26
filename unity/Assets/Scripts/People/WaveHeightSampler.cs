@@ -16,14 +16,15 @@ namespace CapsaicinGames.Shark
 
         //////////////////////////////////////////////////
 
-        void Start() {
+        void Start() 
+        {
             m_startTimeOffset = Random.Range(0f, 3f);
             m_bobMagnitude = Random.Range(m_bobMagnitudeRange.x, m_bobMagnitudeRange.y);
             m_bobDuration = Random.Range(m_bobDurationRange.x, m_bobDurationRange.y);
         }
 
-        void FixedUpdate() {
-            
+        void FixedUpdate() 
+        {
             m_animTime += Time.fixedDeltaTime;
 
             float normalisedBobTime = m_animTime / m_bobDuration;

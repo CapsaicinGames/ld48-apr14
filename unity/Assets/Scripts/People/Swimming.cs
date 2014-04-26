@@ -9,11 +9,13 @@ namespace CapsaicinGames.Shark
 
         //////////////////////////////////////////////////
 
-        void Start() {
+        void Start() 
+        {
 
         }
 
-        void FixedUpdate() {
+        void FixedUpdate() 
+        {
         }
     }
 }
