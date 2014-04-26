@@ -10,6 +10,8 @@ public class PlayerController : MonoBehaviour
     public float speedSteeringFactor;
     public float reversePenaltyFactor;
 
+    private Vector3 previousWorldTransform;
+
 	// Update is called once per frame
 	void FixedUpdate () 
     {
@@ -38,11 +40,23 @@ public class PlayerController : MonoBehaviour
 
         currentSpeedMultiplier *= speedSteeringFactor;
 
-            
-        Vector3 requiredInput = new Vector3(steeringUD * steeringSensitivity * currentSpeedMultiplier, 0, 0);
+        float pitch = steeringUD * steeringSensitivity * currentSpeedMultiplier;
+        float yaw = steeringLR * steeringSensitivity * currentSpeedMultiplier;
+        bool isTurning = Mathf.Approximately(pitch, 0f) == false || Mathf.Approximately(yaw, 0f) == false;
+        if (isTurning)
+        {
+            Vector3 requiredInput = new Vector3(steeringUD * steeringSensitivity * currentSpeedMultiplier, 0, 0);
 
-        Vector3 worldReqInput = transform.TransformDirection(requiredInput) + new Vector3(0, steeringLR * steeringSensitivity * currentSpeedMultiplier, 0);
-        rigidbody.angularVelocity = worldReqInput;
+            Vector3 worldReqInput = transform.TransformDirection(requiredInput) + new Vector3(0, steeringLR * steeringSensitivity * currentSpeedMultiplier, 0);
+            rigidbody.angularVelocity = worldReqInput;
+            previousWorldTransform = worldReqInput;
+        }
+        else
+        {
+            previousWorldTransform = previousWorldTransform * 0.9f;
+            rigidbody.angularVelocity = previousWorldTransform;
+        }
+        
 
 	}
 }
