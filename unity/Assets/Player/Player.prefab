@@ -283,6 +283,9 @@ MonoBehaviour:
   waterDrag: 2
   aboveWaterTorque: .75
   maxAirAngSpeed: 30
+  m_rendererTransform: {fileID: 400004}
+  m_maxTilt: 30
+  m_tiltSmoothing: .100000001
 --- !u!114 &11400002
 MonoBehaviour:
   m_ObjectHideFlags: 1

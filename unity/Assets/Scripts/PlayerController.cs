@@ -13,8 +13,15 @@ public class PlayerController : MonoBehaviour
     public float aboveWaterTorque;
     public float maxAirAngSpeed;
 
+    public Transform m_rendererTransform;
+    public float m_maxTilt;
+    [Range(0f, 1f)]
+    public float m_tiltSmoothing;
+
     private SharkInput m_input;
     private Vector2 m_angularVelocity;
+
+    private float m_previousTilt;
 
     enum ControlState
     {
@@ -70,7 +77,15 @@ public class PlayerController : MonoBehaviour
         transform.Rotate(Vector3.right * desiredPitchDelta);
         
         var desiredYawDelta = m_angularVelocity.y * Time.fixedDeltaTime;
-        transform.Rotate(Vector3.up * desiredYawDelta, Space.World);        
+        transform.Rotate(Vector3.up * desiredYawDelta, Space.World);    
+
+        var normalizedTilt = 
+            Mathf.InverseLerp(0f, maxAirAngSpeed, Mathf.Abs(m_angularVelocity.y));
+        var tiltMag = normalizedTilt * m_maxTilt;
+        var targetTilt = tiltMag * (m_angularVelocity.y > 0f ? -1f : 1f);
+        var tilt = Mathf.Lerp(m_previousTilt, targetTilt, m_tiltSmoothing);
+        m_rendererTransform.localEulerAngles = Vector3.forward * tilt;
+        m_previousTilt = tilt;
     }
 
     void OnTriggerEnter(Collider other)
