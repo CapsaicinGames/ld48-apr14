@@ -32,6 +32,7 @@ GameObject:
   - 92: {fileID: 9200000}
   - 124: {fileID: 12400000}
   - 81: {fileID: 8100000}
+  - 114: {fileID: 11400010}
   - 114: {fileID: 11400004}
   m_Layer: 0
   m_Name: Main Camera
@@ -68,6 +69,7 @@ GameObject:
   - 4: {fileID: 400006}
   - 65: {fileID: 6500004}
   - 114: {fileID: 11400008}
+  - 114: {fileID: 11400012}
   m_Layer: 8
   m_Name: Teeth
   m_TagString: Untagged
@@ -271,6 +273,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   childMesh: {fileID: 100004}
+  cameraObject: {fileID: 100002}
   moneyShotTimeScale: .25
   YoffsetNoControl: 0
   YoffsetAttack: 2
@@ -282,7 +285,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 100002}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 885b1972ad11a921d000d37b8d76c639, type: 3}
+  m_Script: {fileID: 11500000, guid: f1306f1cc1a7d9c409034f58a3c22d59, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 400000}
@@ -303,6 +306,33 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_steeringSensitivity: 3
 --- !u!114 &11400008
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100006}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 39fe28f01ff20ae469d4688c5ce1ff2f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &11400010
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100002}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 13f970d59e141cb41b50ea5e44c398f1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  target: {fileID: 400000}
+  distance: 10
+  xSpeed: 250
+  ySpeed: 120
+  yMinLimit: -20
+--- !u!114 &11400012
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
