@@ -13,9 +13,15 @@ public class SharkAttack : MonoBehaviour
 
     public GameObject childMesh;
     public GameObject cameraObject;
+    public GameObject gibbObject;
+
     public float moneyShotTimeScale;
     public float YoffsetNoControl;
     public float YoffsetAttack;
+    public int gibbsPerSwimmer;
+    // Life of new gibbs in seconds
+    public float gibbLife;
+    public float gibbRadius;
 
     private bool performedEat;
     private MouthState currentMouthOpen;
@@ -43,16 +49,14 @@ public class SharkAttack : MonoBehaviour
             newMouthOpen = MouthState.Closed;
         }
 
-        if ((currentMouthOpen == MouthState.Closed) && (newMouthOpen == MouthState.Open))
+        /*if ((currentMouthOpen == MouthState.Closed) && (newMouthOpen == MouthState.Open))
         {
             currentMouthOpen = MouthState.Open;
-            Debug.Log("Bite (closed)");
-        }
+        }*/
         if ((currentMouthOpen == MouthState.Open) && (newMouthOpen == MouthState.Closed))
         {
-            currentMouthOpen = MouthState.Closed;
+            //currentMouthOpen = MouthState.Closed;
             performedEat = true; // this will possibly change to on player action
-            Debug.Log("Bite (open)");
         }
 
         if ((newMouthOpen == MouthState.Closed) || (newMouthOpen == MouthState.Open))
@@ -67,13 +71,14 @@ public class SharkAttack : MonoBehaviour
         {
             childMesh.renderer.material.color = Color.red;
 
-            cameraObject.GetComponent<SharkAttackCamera>().enabled = true;
-            cameraObject.GetComponent<FollowCamera>().enabled = false;
         }
 
         // Attack time if doing a decent jump and holding a swimmer
         if (rigidbody.position.y > YoffsetAttack)
         {
+            cameraObject.GetComponent<SharkAttackCamera>().enabled = true;
+            cameraObject.GetComponent<FollowCamera>().enabled = false;
+
             bool haveSwimmer = false;
             foreach (var child in gameObject.GetComponentsInChildren<Transform>())
             {
@@ -100,15 +105,33 @@ public class SharkAttack : MonoBehaviour
 
         if (performedEat)
         {
-            foreach (var child in gameObject.GetComponentsInChildren<Transform>())
-            {
-                if (child.tag == "Swimmer")
-                {
-                    Destroy(child.gameObject);
-                    break;
-                }
-            }
+            EatSwimmer();
             performedEat = false;
         }
 	}
+
+    void EatSwimmer()
+    {
+
+        var drag = FindObjectOfType<PlayerController>().airDrag;
+        // Eat the first swimmer grabbed (if you have more than one)
+        foreach (var child in gameObject.GetComponentsInChildren<Transform>())
+        {
+            if (child.tag == "Swimmer")
+            {
+                Destroy(child.gameObject);
+                for (int i = 0; i < gibbsPerSwimmer; ++i)
+                {
+                    var newGibb = (GameObject)Instantiate(gibbObject);
+                    Rigidbody rb = newGibb.GetComponentInChildren<Rigidbody>();
+                    rb.velocity = rigidbody.velocity + (Random.insideUnitSphere * gibbRadius);
+                    rb.drag = drag; // get this from player controller at some point
+                    newGibb.transform.position = transform.TransformPoint(0f, 0f, 3f);
+                    Destroy(newGibb, gibbLife);
+                }
+                break;
+            }
+        }
+    }
+
 }

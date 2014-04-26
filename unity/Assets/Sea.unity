@@ -360,6 +360,26 @@ Prefab:
       propertyPath: m_LocalRotation.w
       value: -1.62920685e-07
       objectReference: {fileID: 0}
+    - target: {fileID: 11400004, guid: f56d31d0c30fe86409d8d9ea0a38843f, type: 2}
+      propertyPath: heightDamping
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400002, guid: f56d31d0c30fe86409d8d9ea0a38843f, type: 2}
+      propertyPath: gibbsPerSwimmer
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400002, guid: f56d31d0c30fe86409d8d9ea0a38843f, type: 2}
+      propertyPath: gibbObject
+      value: 
+      objectReference: {fileID: 100002, guid: 2d2391ce4558fb74e9eed719cbcc7543, type: 2}
+    - target: {fileID: 11400002, guid: f56d31d0c30fe86409d8d9ea0a38843f, type: 2}
+      propertyPath: gibbLife
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400002, guid: f56d31d0c30fe86409d8d9ea0a38843f, type: 2}
+      propertyPath: gibbRadius
+      value: 8
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: f56d31d0c30fe86409d8d9ea0a38843f, type: 2}
   m_RootGameObject: {fileID: 1486548638}
@@ -1026,9 +1046,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   childMesh: {fileID: 617113650}
   cameraObject: {fileID: 135376855}
+  gibbObject: {fileID: 100002, guid: 2d2391ce4558fb74e9eed719cbcc7543, type: 2}
   moneyShotTimeScale: .25
   YoffsetNoControl: 0
   YoffsetAttack: 2
+  gibbsPerSwimmer: 30
+  gibbLife: 15
+  gibbRadius: 8
 --- !u!1 &1593804337
 GameObject:
   m_ObjectHideFlags: 0
