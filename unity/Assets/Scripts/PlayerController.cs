@@ -21,6 +21,9 @@ public class PlayerController : MonoBehaviour
     [Range(0f, 1f)]
     public float m_tiltSmoothing;
 
+    public AnimationCurve autoLevelForceFromSpeed;
+    public AnimationCurve autoLevelForceFromAngle;
+
     private SharkInput m_input;
     private Vector2 m_angularVelocity;
 
@@ -153,8 +156,12 @@ public class PlayerController : MonoBehaviour
         else
         {
             float pitchSteering = m_input.GetVertical();
+
+            float levelingVel = LevelingVel(currentSpeed);
+            
             float pitchFadeOff = PitchFadeOffProportion(pitchSteering);
-            var desiredPitchVel = pitchSteering * rotationScalar.y * pitchFadeOff;
+            var desiredPitchVel = 
+                pitchSteering * rotationScalar.y * pitchFadeOff + levelingVel;
 
             float yawSteering = m_input.GetHorizontal();
             var desiredYawVel = yawSteering * rotationScalar.x;
@@ -168,12 +175,34 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    float PitchFadeOffProportion(float pitchRequest)
+    float LevelingVel(float currentSpeed)
+    {
+        var speedLevelingScalar = autoLevelForceFromSpeed.Evaluate(currentSpeed);
+        
+        float unlevelness = DegreesFromHorizontal();
+        var angleLevelingScalar = autoLevelForceFromAngle.Evaluate(Mathf.Abs(unlevelness));
+        
+        float levelingVel = angleLevelingScalar * speedLevelingScalar
+            * (unlevelness < 0f ? -1f : 1f);
+
+        Debug.Log("unlevel " + unlevelness + " at speed " + currentSpeed + " gives " + levelingVel);
+        return levelingVel;
+    }
+
+    // normalize so up is pos degrees, down is negative.
+    // by default, rotation starts from horizon, goes +ve down, and wraps to 360
+    float DegreesFromHorizontal()
     {
         float currentPitch = transform.eulerAngles.x;
-        // normalize so up is pos negrees, down is negative.
-        // by default, rotation starts from horizon, goes +ve down, and wraps to 360
         bool isPitchingUp = currentPitch > 180f;
+        currentPitch = -(isPitchingUp ? currentPitch - 360f : currentPitch);
+        return currentPitch;
+    }
+
+    float PitchFadeOffProportion(float pitchRequest)
+    {
+        float currentPitch = DegreesFromHorizontal();
+        bool isPitchingUp = currentPitch > 0f;
 
         bool isRequestingPitchToCenter = (isPitchingUp && pitchRequest > 0f) 
             || (isPitchingUp == false && pitchRequest < 0f);
@@ -183,7 +212,6 @@ public class PlayerController : MonoBehaviour
             return 1f;
         }
 
-        currentPitch = -(isPitchingUp ? currentPitch - 360f : currentPitch);
         float pitchIntoFadeWindow = isPitchingUp
             ? currentPitch - (minMaxPitch.y - pitchFadeOffWindow)
             : (minMaxPitch.x + pitchFadeOffWindow) - currentPitch;
