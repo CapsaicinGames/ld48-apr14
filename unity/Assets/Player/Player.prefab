@@ -257,10 +257,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ea53d04bfb49384f9bf2d0af8cb00e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speedScalar: 40
+  speedScalar: 60
   rotationScalar: {x: 20, y: 20}
   airDrag: .5
   waterDrag: 2
+  aboveWaterTorque: .75
+  maxAirAngSpeed: 30
 --- !u!114 &11400002
 MonoBehaviour:
   m_ObjectHideFlags: 1
