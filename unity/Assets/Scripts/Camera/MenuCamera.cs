@@ -4,6 +4,7 @@ using CapsaicinGames.Shark;
 
 public class MenuCamera : MonoBehaviour {
 
+    public GameObject newGameCamera;
     public GameObject endGameCamera;
     public SwimmerSpawner swimmerSpawner;
 
@@ -12,6 +13,7 @@ public class MenuCamera : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         _sharkInput = FindObjectOfType<SharkInput>();
+        _sharkInput.enabled = false;
         swimmerSpawner.OnEndGameCallback += swimmerSpawner_OnEndGameCallback;
 	}
 	
@@ -25,6 +27,12 @@ public class MenuCamera : MonoBehaviour {
         _sharkInput.enabled = false;
         endGameCamera.SetActive(true);
         swimmerSpawner.OnEndGameCallback -= swimmerSpawner_OnEndGameCallback;
+    }
+
+    private void Play()
+    {
+        newGameCamera.SetActive(false);
+        _sharkInput.enabled = true;
     }
 
     private void Restart()
