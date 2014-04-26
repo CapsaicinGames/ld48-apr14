@@ -6,6 +6,8 @@ public class PlayerController : MonoBehaviour
     public AnimationCurve m_accelCurve;
     public float speedScalar;
     public Vector2 rotationScalar;
+    public Vector2 minMaxPitch;
+    public float pitchFadeOffWindow;
 
     public float airDrag;
     public float waterDrag;
@@ -140,7 +142,8 @@ public class PlayerController : MonoBehaviour
         rigidbody.AddRelativeForce(Vector3.forward * desiredForwardForce);
 
         float pitchSteering = m_input.GetVertical();
-        var desiredPitchVel = pitchSteering * rotationScalar.y;
+        float pitchFadeOff = PitchFadeOffProportion(pitchSteering);
+        var desiredPitchVel = pitchSteering * rotationScalar.y * pitchFadeOff;
 
         float yawSteering = m_input.GetHorizontal();
         var desiredYawVel = yawSteering * rotationScalar.x;
@@ -151,5 +154,31 @@ public class PlayerController : MonoBehaviour
             Vector2.Lerp(m_angularVelocity, desiredVelocity, rigidbody.angularDrag);
 
         return angVelocity;
+    }
+
+    float PitchFadeOffProportion(float pitchRequest)
+    {
+        float currentPitch = transform.eulerAngles.x;
+        // normalize so up is pos negrees, down is negative.
+        // by default, rotation starts from horizon, goes +ve down, and wraps to 360
+        bool isPitchingUp = currentPitch > 180f;
+
+        bool isRequestingPitchToCenter = (isPitchingUp && pitchRequest > 0f) 
+            || (isPitchingUp == false && pitchRequest < 0f);
+        if (isRequestingPitchToCenter) 
+        {
+            // you can always return to center
+            return 1f;
+        }
+
+        currentPitch = -(isPitchingUp ? currentPitch - 360f : currentPitch);
+        float pitchIntoFadeWindow = isPitchingUp
+            ? currentPitch - (minMaxPitch.y - pitchFadeOffWindow)
+            : (minMaxPitch.x + pitchFadeOffWindow) - currentPitch;
+        float propIntoFadeOffWindow = 
+            Mathf.InverseLerp(pitchFadeOffWindow, 0, pitchIntoFadeWindow);
+        
+        Debug.Log("at angle " + currentPitch + " gives fadeoff " + propIntoFadeOffWindow);
+        return propIntoFadeOffWindow;
     }
 }
