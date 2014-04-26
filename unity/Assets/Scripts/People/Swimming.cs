@@ -93,9 +93,7 @@ namespace CapsaicinGames.Shark
 
         // Detects if the swimmer is on the beach or not
         private bool OnTheBeach()
-        {
-            var location = (beach.transform.position - transform.position).normalized;
-
+        {           
             return false;
         }
 

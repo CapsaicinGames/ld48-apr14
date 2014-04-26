@@ -259,9 +259,9 @@ Transform:
   m_LocalPosition: {x: -337.824829, y: -873.920288, z: -1021.51428}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
+  - {fileID: 553192239}
   - {fileID: 822988373}
   - {fileID: 551255397}
-  - {fileID: 553192239}
   - {fileID: 1593804341}
   m_Father: {fileID: 0}
 --- !u!1 &392289435
@@ -1123,6 +1123,9 @@ MonoBehaviour:
     m_PostInfinity: 2
   speedScalar: 60
   rotationScalar: {x: 20, y: 20}
+  minMaxPitch: {x: -60, y: 70}
+  pitchFadeOffWindow: 20
+  rightingForce: 2
   airDrag: .5
   waterDrag: 2
   aboveWaterTorque: .75
