@@ -5,6 +5,8 @@ public class PlayerController : MonoBehaviour
 {
     public float speedScalar;
     public Vector2 rotationScalar;
+    public float airDrag;
+    public float waterDrag;
 
     private SharkInput m_input;
     private Vector2 m_angularVelocity;
@@ -45,9 +47,11 @@ public class PlayerController : MonoBehaviour
         {
         case ControlState.Air:
             rigidbody.useGravity = true;
+            rigidbody.drag = airDrag;
             break;
         case ControlState.Water:
             rigidbody.useGravity = false;
+            rigidbody.drag = waterDrag;
             break;
         }
         m_controlState = newControlState;
@@ -107,4 +111,3 @@ public class PlayerController : MonoBehaviour
         return desiredVelocity;
     }
 }
-p
