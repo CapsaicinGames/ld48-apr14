@@ -21,9 +21,6 @@ public class SharkAttack : MonoBehaviour
         if (rigidbody.position.y > YoffsetNoControl)
         {
             childMesh.renderer.material.color = Color.red;
-            gameObject.GetComponent<PlayerController>().enabled = false;
-            rigidbody.useGravity = true;
-            rigidbody.drag = 0.5f;
         }
 
         if (rigidbody.position.y > YoffsetAttack)
@@ -50,9 +47,6 @@ public class SharkAttack : MonoBehaviour
         {
             Time.timeScale = 1f;
             childMesh.renderer.material.color = Color.green;
-            gameObject.GetComponent<PlayerController>().enabled = true;
-            rigidbody.useGravity = false;
-            rigidbody.drag = 2f;
 
             if (performedEat)
             {
