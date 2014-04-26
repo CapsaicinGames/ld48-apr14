@@ -1,0 +1,6 @@
+*.meta
+*.unity
+*.asset
+unity/UnitTestResults.xml
+Builds
+unity/Temp
