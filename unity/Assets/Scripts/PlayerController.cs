@@ -127,7 +127,6 @@ public class PlayerController : MonoBehaviour
         var desiredAngVel = 
             Vector2.ClampMagnitude(m_angularVelocity + angVelDelta, maxAirAngSpeed);
 
-        Debug.Log("ang vel " + m_angularVelocity + " delta " + angVelDelta);
         return desiredAngVel;
     }
 
