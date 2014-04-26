@@ -8,15 +8,24 @@ public class PlayerController : MonoBehaviour
     public float minSteeringScalar;
     public float maxSteeringScalar;
     public float speedSteeringFactor;
+    public float reversePenaltyFactor;
 
 	// Update is called once per frame
 	void FixedUpdate () 
     {
-        float forward = Input.GetAxis("Vertical");
-        float steering = Input.GetAxis("Horizontal");
+        float forward = -Input.GetAxis("ForwardAxis");
+        float steeringLR = Input.GetAxis("Horizontal");
+        float steeringUD = Input.GetAxis("Vertical");
+
+        Debug.Log("Forward: " + forward);
+
+        if (forward < 0f)
+        {
+            forward *= reversePenaltyFactor;
+        }
 
         rigidbody.AddRelativeForce(0f, 0f, forward * speedScalar);
-
+        
         float currentSpeedMultiplier = (float)rigidbody.velocity.magnitude;
         if (currentSpeedMultiplier < minSteeringScalar)
         {
@@ -29,6 +38,11 @@ public class PlayerController : MonoBehaviour
 
         currentSpeedMultiplier *= speedSteeringFactor;
 
-        rigidbody.AddRelativeTorque(0f, steering * steeringSensitivity * currentSpeedMultiplier, 0);
+            
+        Vector3 requiredInput = new Vector3(steeringUD * steeringSensitivity * currentSpeedMultiplier, 0, 0);
+
+        Vector3 worldReqInput = transform.TransformDirection(requiredInput) + new Vector3(0, steeringLR * steeringSensitivity * currentSpeedMultiplier, 0);
+        rigidbody.angularVelocity = worldReqInput;
+
 	}
 }
