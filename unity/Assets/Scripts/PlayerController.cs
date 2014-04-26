@@ -8,6 +8,7 @@ public class PlayerController : MonoBehaviour
     public Vector2 rotationScalar;
     public Vector2 minMaxPitch;
     public float pitchFadeOffWindow;
+    public float rightingForce;
 
     public float airDrag;
     public float waterDrag;
@@ -141,19 +142,30 @@ public class PlayerController : MonoBehaviour
         var desiredForwardForce = speedInput * speedScalar * modifierSpeed;
         rigidbody.AddRelativeForce(Vector3.forward * desiredForwardForce);
 
-        float pitchSteering = m_input.GetVertical();
-        float pitchFadeOff = PitchFadeOffProportion(pitchSteering);
-        var desiredPitchVel = pitchSteering * rotationScalar.y * pitchFadeOff;
+        float zRotation = transform.eulerAngles.z;
+        if (Mathf.Abs(zRotation) > 5f) 
+        {
+            // rotate back right way up
+            // don't allow rotation control yet
+            transform.Rotate(Vector3.forward, rightingForce);
+            return Vector2.zero;
+        }
+        else
+        {
+            float pitchSteering = m_input.GetVertical();
+            float pitchFadeOff = PitchFadeOffProportion(pitchSteering);
+            var desiredPitchVel = pitchSteering * rotationScalar.y * pitchFadeOff;
 
-        float yawSteering = m_input.GetHorizontal();
-        var desiredYawVel = yawSteering * rotationScalar.x;
+            float yawSteering = m_input.GetHorizontal();
+            var desiredYawVel = yawSteering * rotationScalar.x;
 
-        var desiredVelocity = new Vector2(desiredPitchVel, desiredYawVel);
+            var desiredVelocity = new Vector2(desiredPitchVel, desiredYawVel);
 
-        var angVelocity = 
-            Vector2.Lerp(m_angularVelocity, desiredVelocity, rigidbody.angularDrag);
+            var angVelocity = 
+                Vector2.Lerp(m_angularVelocity, desiredVelocity, rigidbody.angularDrag);
 
-        return angVelocity;
+            return angVelocity;
+        }
     }
 
     float PitchFadeOffProportion(float pitchRequest)
