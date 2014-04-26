@@ -37,5 +37,10 @@ namespace CapsaicinGames.Shark
 
             transform.position = newPos;
         }
+
+        void onGrabbed()
+        {
+            enabled = false;
+        }
     }
 }
