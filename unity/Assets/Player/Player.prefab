@@ -350,6 +350,21 @@ MonoBehaviour:
     m_PostInfinity: 2
   speedScalar: 60
   rotationScalar: {x: 20, y: 20}
+  rotationCoefficentBySpeed:
+    serializedVersion: 2
+    m_Curve:
+    - time: 1
+      value: .100371756
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    - time: 7.9000001
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
   minMaxPitch: {x: -60, y: 70}
   pitchFadeOffWindow: 20
   rightingForce: 2

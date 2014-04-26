@@ -6,6 +6,7 @@ public class PlayerController : MonoBehaviour
     public AnimationCurve m_accelCurve;
     public float speedScalar;
     public Vector2 rotationScalar;
+    public AnimationCurve rotationCoefficentBySpeed;
     public Vector2 minMaxPitch;
     public float pitchFadeOffWindow;
     public float rightingForce;
@@ -157,16 +158,19 @@ public class PlayerController : MonoBehaviour
         }
         else
         {
+            float speedTurnCoefficent = rotationCoefficentBySpeed.Evaluate(currentSpeed);
+
             float pitchSteering = m_input.GetVertical();
 
             float levelingVel = LevelingVel(currentSpeed, pitchSteering);
-            
+
             float pitchFadeOff = PitchFadeOffProportion(pitchSteering);
             var desiredPitchVel = 
-                pitchSteering * rotationScalar.y * pitchFadeOff + levelingVel;
+                pitchSteering * rotationScalar.y * pitchFadeOff * speedTurnCoefficent 
+                + levelingVel;
 
             float yawSteering = m_input.GetHorizontal();
-            var desiredYawVel = yawSteering * rotationScalar.x;
+            var desiredYawVel = yawSteering * rotationScalar.x * speedTurnCoefficent;
 
             var desiredVelocity = new Vector2(desiredPitchVel, desiredYawVel);
 
