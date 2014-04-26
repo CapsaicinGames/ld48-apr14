@@ -362,6 +362,14 @@ Prefab:
       propertyPath: childMesh
       value: 
       objectReference: {fileID: 617113650}
+    - target: {fileID: 11400000, guid: f56d31d0c30fe86409d8d9ea0a38843f, type: 2}
+      propertyPath: speedScalar
+      value: 60
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400002, guid: f56d31d0c30fe86409d8d9ea0a38843f, type: 2}
+      propertyPath: moneyShotTimeScale
+      value: .25
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: f56d31d0c30fe86409d8d9ea0a38843f, type: 2}
   m_RootGameObject: {fileID: 1486548638}
@@ -904,7 +912,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   steeringSensitivity: 3
-  speedScalar: 100
+  speedScalar: 60
   minSteeringScalar: 1
   maxSteeringScalar: 5
   speedSteeringFactor: .300000012
@@ -948,6 +956,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   childMesh: {fileID: 617113650}
+  moneyShotTimeScale: .25
 --- !u!1 &1593804337
 GameObject:
   m_ObjectHideFlags: 0

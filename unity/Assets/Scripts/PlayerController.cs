@@ -19,8 +19,6 @@ public class PlayerController : MonoBehaviour
         float steeringLR = Input.GetAxis("Horizontal");
         float steeringUD = Input.GetAxis("Vertical");
 
-        Debug.Log("Forward: " + forward);
-
         if (forward < 0f)
         {
             forward *= reversePenaltyFactor;
@@ -71,6 +69,10 @@ public class PlayerController : MonoBehaviour
             foreach (var col in other.gameObject.GetComponentsInChildren<Collider>())
             {
                 col.enabled = false;
+            }
+            foreach (var rb in other.gameObject.GetComponentsInChildren<Rigidbody>())
+            {
+                Destroy(rb);
             }
         }
     }
