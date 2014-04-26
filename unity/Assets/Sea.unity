@@ -86,8 +86,8 @@ GameObject:
   - 92: {fileID: 135376859}
   - 124: {fileID: 135376858}
   - 81: {fileID: 135376857}
-  - 114: {fileID: 135376861}
   - 114: {fileID: 135376862}
+  - 114: {fileID: 135376861}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -163,20 +163,19 @@ Camera:
 --- !u!114 &135376861
 MonoBehaviour:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 11400004, guid: f56d31d0c30fe86409d8d9ea0a38843f,
-    type: 2}
-  m_PrefabInternal: {fileID: 1943717754}
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 135376855}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 885b1972ad11a921d000d37b8d76c639, type: 3}
+  m_Script: {fileID: 11500000, guid: f1306f1cc1a7d9c409034f58a3c22d59, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 1486548644}
   distance: 6
   height: 2
   heightDamping: 2
-  rotationDamping: 10
+  rotationDamping: 3
 --- !u!114 &135376862
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -958,6 +957,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   childMesh: {fileID: 617113650}
+  cameraObject: {fileID: 135376855}
   moneyShotTimeScale: .25
   YoffsetNoControl: 0
   YoffsetAttack: 2
@@ -1158,7 +1158,16 @@ Prefab:
       propertyPath: YoffsetAttack
       value: 2
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 11400004, guid: f56d31d0c30fe86409d8d9ea0a38843f, type: 2}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400002, guid: f56d31d0c30fe86409d8d9ea0a38843f, type: 2}
+      propertyPath: cameraObject
+      value: 
+      objectReference: {fileID: 135376855}
+    m_RemovedComponents:
+    - {fileID: 11400004, guid: f56d31d0c30fe86409d8d9ea0a38843f, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: f56d31d0c30fe86409d8d9ea0a38843f, type: 2}
   m_RootGameObject: {fileID: 1486548638}
   m_IsPrefabParent: 0

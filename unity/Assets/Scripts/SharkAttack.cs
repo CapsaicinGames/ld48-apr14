@@ -1,9 +1,11 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+
 public class SharkAttack : MonoBehaviour 
 {
     public GameObject childMesh;
+    public GameObject cameraObject;
     public float moneyShotTimeScale;
     public float YoffsetNoControl;
     public float YoffsetAttack;
@@ -24,6 +26,9 @@ public class SharkAttack : MonoBehaviour
             gameObject.GetComponent<PlayerController>().enabled = false;
             rigidbody.useGravity = true;
             rigidbody.drag = 0.5f;
+
+            cameraObject.GetComponent<SharkAttackCamera>().enabled = true;
+            cameraObject.GetComponent<FollowCamera>().enabled = false;
         }
 
         if (rigidbody.position.y > YoffsetAttack)
@@ -43,7 +48,6 @@ public class SharkAttack : MonoBehaviour
             {
                 Time.timeScale = moneyShotTimeScale;
             }
-
         }
 
         if (rigidbody.position.y <= YoffsetNoControl)
@@ -53,6 +57,9 @@ public class SharkAttack : MonoBehaviour
             gameObject.GetComponent<PlayerController>().enabled = true;
             rigidbody.useGravity = false;
             rigidbody.drag = 2f;
+
+            cameraObject.GetComponent<SharkAttackCamera>().enabled = false;
+            cameraObject.GetComponent<FollowCamera>().enabled = true;
 
             if (performedEat)
             {
