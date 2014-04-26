@@ -16,8 +16,6 @@ namespace CapsaicinGames.Shark
         public bool panicMode = false;
         public bool onBeach = false;
 
-        private float beachVanishTimer = 20000;
-
         //////////////////////////////////////////////////
 
         void Update()

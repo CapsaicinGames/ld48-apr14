@@ -185,7 +185,6 @@ public class PlayerController : MonoBehaviour
         float levelingVel = angleLevelingScalar * speedLevelingScalar
             * (unlevelness < 0f ? -1f : 1f);
 
-        Debug.Log("unlevel " + unlevelness + " at speed " + currentSpeed + " gives " + levelingVel);
         return levelingVel;
     }
 

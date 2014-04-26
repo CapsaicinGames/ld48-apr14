@@ -1113,6 +1113,36 @@ MonoBehaviour:
   m_rendererTransform: {fileID: 1096386815}
   m_maxTilt: 30
   m_tiltSmoothing: .100000001
+  autoLevelForceFromSpeed:
+    serializedVersion: 2
+    m_Curve:
+    - time: 7.5
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    - time: 14.1999998
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+  autoLevelForceFromAngle:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    - time: 20
+      value: 15
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
 --- !u!114 &1486548641
 MonoBehaviour:
   m_ObjectHideFlags: 0

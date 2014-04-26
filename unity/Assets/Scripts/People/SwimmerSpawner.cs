@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 namespace CapsaicinGames.Shark 
@@ -10,13 +11,19 @@ namespace CapsaicinGames.Shark
         [SerializeField] GameObject m_swimmerPrefab = null;
         [SerializeField] float m_targetDensity = 0f;
 
+        public event System.Action OnEndGameCallback;
+
         //////////////////////////////////////////////////
 
-        void Start() {
+        void Start() 
+        {
             GenerateSwimmers();
         }
 
-        void GenerateSwimmers() {
+        /* Create a mass of swimmers in a certain area
+         */
+        void GenerateSwimmers() 
+        {
             float totalArea = Mathf.PI * m_regionRadius * m_regionRadius;
             int swimmersToGenerate = Mathf.FloorToInt(m_targetDensity * totalArea);
 
@@ -37,5 +44,20 @@ namespace CapsaicinGames.Shark
                 --swimmersToGenerate;
             }
         }
+
+        void Update()
+        {
+            var numSwimmers = transform.childCount;
+            if (numSwimmers == 0)
+            {
+                if (OnEndGameCallback != null)
+                {
+                    OnEndGameCallback();
+                }
+
+                SceneControl.RestartGame();
+            }
+        }
+
     }
 }

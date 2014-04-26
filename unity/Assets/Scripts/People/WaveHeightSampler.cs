@@ -9,7 +9,6 @@ namespace CapsaicinGames.Shark
         [SerializeField] AnimationCurve m_normalizedBob;
         [SerializeField] Vector2 m_bobMagnitudeRange;
         [SerializeField] Vector2 m_bobDurationRange;
-        float m_startTimeOffset = 0f;
         float m_animTime = 0f;
         float m_bobMagnitude;
         float m_bobDuration;
@@ -18,7 +17,6 @@ namespace CapsaicinGames.Shark
 
         void Start() 
         {
-            m_startTimeOffset = Random.Range(0f, 3f);
             m_bobMagnitude = Random.Range(m_bobMagnitudeRange.x, m_bobMagnitudeRange.y);
             m_bobDuration = Random.Range(m_bobDurationRange.x, m_bobDurationRange.y);
         }
