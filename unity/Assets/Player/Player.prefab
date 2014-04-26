@@ -363,6 +363,9 @@ MonoBehaviour:
     m_PostInfinity: 2
   speedScalar: 60
   rotationScalar: {x: 20, y: 20}
+  minMaxPitch: {x: -60, y: 70}
+  pitchFadeOffWindow: 20
+  rightingForce: 2
   airDrag: .5
   waterDrag: 2
   aboveWaterTorque: .75
