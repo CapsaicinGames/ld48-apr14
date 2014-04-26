@@ -47,28 +47,28 @@ namespace CapsaicinGames.Shark
         // Works out the direction for the swimmer to move in
         Vector3 CalculateDirection()
         {
-            var steerAwayFromShark = SteerAwayFromShark();
+            var steerAwayFromShark = SteerAwayFromTerror();
             var steerTowardsBeach = SteerTowardsBeach();
 
             return (steerAwayFromShark + steerTowardsBeach).normalized;
         }
 
         // The direction away from the shark from the swimmer
-        Vector3 SteerAwayFromShark()
+        Vector3 SteerAwayFromTerror()
         {
-            var awayFromShark = transform.position - shark.transform.position;
-            var distance = awayFromShark.magnitude;
+            var steerDirAndTerror = 
+                TerrorMap.TerrorMap.Instance.CalculateMinimumTerrorDirection(transform.position);
 
-            // You might have been eaten!
-            if (distance == 0)
+            if (steerDirAndTerror == Vector4.zero)
             {
-                return Vector3.forward * sharkFleeStrength;
+                return Vector3.zero;
             }
-
-            var steerDirection = awayFromShark / distance;
-            var normalisedDistance = distance / proximityTrigger;
-
-            return Mathf.Lerp(sharkFleeStrength, 0, normalisedDistance) * steerDirection;
+            else
+            {
+                var dir = (Vector3)steerDirAndTerror;
+                var steer = dir * steerDirAndTerror.w * sharkFleeStrength;
+                return steer;
+            }
         }
 
         // The direction of the beach from the swimmer
