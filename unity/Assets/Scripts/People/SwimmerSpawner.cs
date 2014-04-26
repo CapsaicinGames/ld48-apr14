@@ -20,9 +20,14 @@ namespace CapsaicinGames.Shark
             float totalArea = Mathf.PI * m_regionRadius * m_regionRadius;
             int swimmersToGenerate = Mathf.FloorToInt(m_targetDensity * totalArea);
 
+            var shark = FindObjectOfType<PlayerController>().transform;
+            var beach = GameObject.FindWithTag("BeachPoint");           
+
             while(swimmersToGenerate > 0) {
 
                 var newSwimmer = (GameObject)Instantiate(m_swimmerPrefab);
+                newSwimmer.GetComponent<Swimming>().shark = shark;
+                newSwimmer.GetComponent<Swimming>().beach = beach;
                 var planePos = Random.insideUnitCircle * m_regionRadius;
                 var swimmerPos = new Vector3(planePos.x, 0f, planePos.y);
 

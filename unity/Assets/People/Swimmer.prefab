@@ -13,6 +13,7 @@ GameObject:
   - 23: {fileID: 2300000}
   - 114: {fileID: 11400000}
   - 54: {fileID: 5400000}
+  - 114: {fileID: 11400002}
   m_Layer: 8
   m_Name: Swimmer
   m_TagString: Swimmer
@@ -124,6 +125,20 @@ MonoBehaviour:
     m_PostInfinity: 1
   m_bobMagnitudeRange: {x: .300000012, y: .5}
   m_bobDurationRange: {x: 2, y: 4}
+--- !u!114 &11400002
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100000}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f631403fcfbff4626b6e77e4f5760ddc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  shark: {fileID: 100000, guid: f56d31d0c30fe86409d8d9ea0a38843f, type: 2}
+  beach: {fileID: 100000, guid: ade13920285c6594fa0bb35b6559fcd7, type: 2}
+  proximityTrigger: 20
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1
