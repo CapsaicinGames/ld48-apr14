@@ -224,7 +224,6 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 822988373}
-  - {fileID: 1105573337}
   - {fileID: 1593804341}
   m_Father: {fileID: 0}
 --- !u!1 &392289435
@@ -328,84 +327,19 @@ Prefab:
       propertyPath: childMesh
       value: 
       objectReference: {fileID: 617113650}
+    - target: {fileID: 11400000, guid: f56d31d0c30fe86409d8d9ea0a38843f, type: 2}
+      propertyPath: speedScalar
+      value: 60
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400002, guid: f56d31d0c30fe86409d8d9ea0a38843f, type: 2}
+      propertyPath: moneyShotTimeScale
+      value: .25
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: f56d31d0c30fe86409d8d9ea0a38843f, type: 2}
   m_RootGameObject: {fileID: 1486548638}
   m_IsPrefabParent: 0
   m_IsExploded: 1
---- !u!1 &551255393
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 100000, guid: ade13920285c6594fa0bb35b6559fcd7, type: 2}
-  m_PrefabInternal: {fileID: 902310037}
-  serializedVersion: 4
-  m_Component:
-  - 4: {fileID: 551255397}
-  - 33: {fileID: 551255396}
-  - 64: {fileID: 551255395}
-  - 23: {fileID: 551255394}
-  m_Layer: 0
-  m_Name: BeachTopSide
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!23 &551255394
-Renderer:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 2300000, guid: ade13920285c6594fa0bb35b6559fcd7,
-    type: 2}
-  m_PrefabInternal: {fileID: 902310037}
-  m_GameObject: {fileID: 551255393}
-  m_Enabled: 1
-  m_CastShadows: 1
-  m_ReceiveShadows: 1
-  m_LightmapIndex: 255
-  m_LightmapTilingOffset: {x: 1, y: 1, z: 0, w: 0}
-  m_Materials:
-  - {fileID: 2100000, guid: 5932f2760d420ff4da6d82bd54fe830d, type: 2}
-  m_SubsetIndices: 
-  m_StaticBatchRoot: {fileID: 0}
-  m_UseLightProbes: 0
-  m_LightProbeAnchor: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_SortingLayer: 0
-  m_SortingOrder: 0
-  m_SortingLayerID: 0
---- !u!64 &551255395
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 6400000, guid: ade13920285c6594fa0bb35b6559fcd7,
-    type: 2}
-  m_PrefabInternal: {fileID: 902310037}
-  m_GameObject: {fileID: 551255393}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_SmoothSphereCollisions: 0
-  m_Convex: 0
-  m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
---- !u!33 &551255396
-MeshFilter:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 3300000, guid: ade13920285c6594fa0bb35b6559fcd7,
-    type: 2}
-  m_PrefabInternal: {fileID: 902310037}
-  m_GameObject: {fileID: 551255393}
-  m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
---- !u!4 &551255397
-Transform:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 400000, guid: ade13920285c6594fa0bb35b6559fcd7, type: 2}
-  m_PrefabInternal: {fileID: 902310037}
-  m_GameObject: {fileID: 551255393}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 58.2807465, y: -29.9900742, z: -146.098724}
-  m_LocalScale: {x: 47.6766586, y: 47.6766586, z: 23.3999996}
-  m_Children: []
-  m_Father: {fileID: 1105573337}
 --- !u!1001 &573077434
 Prefab:
   m_ObjectHideFlags: 0
@@ -782,73 +716,6 @@ Transform:
   m_LocalScale: {x: 47.6766586, y: 47.6766586, z: 8.02494144}
   m_Children: []
   m_Father: {fileID: 205838336}
---- !u!1001 &902310037
-Prefab:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 205838336}
-    m_Modifications:
-    - target: {fileID: 400002, guid: ade13920285c6594fa0bb35b6559fcd7, type: 2}
-      propertyPath: m_LocalPosition.x
-      value: 287.369965
-      objectReference: {fileID: 0}
-    - target: {fileID: 400002, guid: ade13920285c6594fa0bb35b6559fcd7, type: 2}
-      propertyPath: m_LocalPosition.y
-      value: 904.619751
-      objectReference: {fileID: 0}
-    - target: {fileID: 400002, guid: ade13920285c6594fa0bb35b6559fcd7, type: 2}
-      propertyPath: m_LocalPosition.z
-      value: 947.808594
-      objectReference: {fileID: 0}
-    - target: {fileID: 400002, guid: ade13920285c6594fa0bb35b6559fcd7, type: 2}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 400002, guid: ade13920285c6594fa0bb35b6559fcd7, type: 2}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 400002, guid: ade13920285c6594fa0bb35b6559fcd7, type: 2}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 400002, guid: ade13920285c6594fa0bb35b6559fcd7, type: 2}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_ParentPrefab: {fileID: 100100000, guid: ade13920285c6594fa0bb35b6559fcd7, type: 2}
-  m_RootGameObject: {fileID: 1105573336}
-  m_IsPrefabParent: 0
-  m_IsExploded: 1
---- !u!1 &1105573336
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 100002, guid: ade13920285c6594fa0bb35b6559fcd7, type: 2}
-  m_PrefabInternal: {fileID: 902310037}
-  serializedVersion: 4
-  m_Component:
-  - 4: {fileID: 1105573337}
-  m_Layer: 0
-  m_Name: BeachTop
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1105573337
-Transform:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 400002, guid: ade13920285c6594fa0bb35b6559fcd7, type: 2}
-  m_PrefabInternal: {fileID: 902310037}
-  m_GameObject: {fileID: 1105573336}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 287.369965, y: 904.619751, z: 947.808594}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children:
-  - {fileID: 551255397}
-  m_Father: {fileID: 205838336}
 --- !u!1 &1486548638
 GameObject:
   m_ObjectHideFlags: 0
@@ -897,7 +764,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   steeringSensitivity: 3
-  speedScalar: 100
+  speedScalar: 60
   minSteeringScalar: 1
   maxSteeringScalar: 5
   speedSteeringFactor: .300000012
@@ -941,6 +808,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   childMesh: {fileID: 617113650}
+  moneyShotTimeScale: .25
 --- !u!1 &1593804337
 GameObject:
   m_ObjectHideFlags: 0

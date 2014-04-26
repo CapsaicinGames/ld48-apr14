@@ -19,8 +19,6 @@ public class PlayerController : MonoBehaviour
         float steeringLR = Input.GetAxis("Horizontal");
         float steeringUD = Input.GetAxis("Vertical");
 
-        Debug.Log("Forward: " + forward);
-
         if (forward < 0f)
         {
             forward *= reversePenaltyFactor;
