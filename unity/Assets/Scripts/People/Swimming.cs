@@ -30,6 +30,15 @@ namespace CapsaicinGames.Shark
             }
         }
 
+        void OnCollisionEnter(Collision other)
+        {
+            if (other.gameObject.tag == "Gib")
+            {
+                renderer.material = other.gameObject.renderer.material;
+                Destroy(other.gameObject);
+            }
+        }
+
         void FixedUpdate() 
         {
             var direction = CalculateDirection();
