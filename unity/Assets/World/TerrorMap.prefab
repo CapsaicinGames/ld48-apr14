@@ -41,7 +41,7 @@ MonoBehaviour:
   m_mapRadius: 160
   m_metersPerCell: 5
   m_cellsUpdatedPerFrame: 500
-  m_decayRate: .100000001
+  m_decayRate: .0299999993
   m_isDebugRenderingEnabled: 1
 --- !u!1001 &100100000
 Prefab:
