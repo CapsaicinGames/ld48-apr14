@@ -86,6 +86,7 @@ GameObject:
   - 92: {fileID: 135376859}
   - 124: {fileID: 135376858}
   - 81: {fileID: 135376857}
+  - 114: {fileID: 135376861}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -158,6 +159,22 @@ Camera:
   m_TargetTexture: {fileID: 0}
   m_HDR: 0
   m_OcclusionCulling: 1
+--- !u!114 &135376861
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 135376855}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 885b1972ad11a921d000d37b8d76c639, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  target: {fileID: 1486548644}
+  distance: 6
+  height: 2
+  heightDamping: 2
+  rotationDamping: 3
 --- !u!1001 &170545482
 Prefab:
   m_ObjectHideFlags: 0
@@ -224,7 +241,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 822988373}
-  - {fileID: 1105573337}
+  - {fileID: 551255397}
   - {fileID: 1593804341}
   m_Father: {fileID: 0}
 --- !u!1 &392289435
@@ -345,7 +362,7 @@ GameObject:
   - 64: {fileID: 551255395}
   - 23: {fileID: 551255394}
   m_Layer: 0
-  m_Name: BeachTopSide
+  m_Name: BeachTop
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -402,10 +419,10 @@ Transform:
   m_PrefabInternal: {fileID: 902310037}
   m_GameObject: {fileID: 551255393}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 58.2807465, y: -29.9900742, z: -146.098724}
+  m_LocalPosition: {x: 345.650696, y: 874.6297, z: 801.709839}
   m_LocalScale: {x: 47.6766586, y: 47.6766586, z: 23.3999996}
   m_Children: []
-  m_Father: {fileID: 1105573337}
+  m_Father: {fileID: 205838336}
 --- !u!1001 &573077434
 Prefab:
   m_ObjectHideFlags: 0
@@ -819,36 +836,9 @@ Prefab:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ade13920285c6594fa0bb35b6559fcd7, type: 2}
-  m_RootGameObject: {fileID: 1105573336}
+  m_RootGameObject: {fileID: 551255393}
   m_IsPrefabParent: 0
   m_IsExploded: 1
---- !u!1 &1105573336
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 100002, guid: ade13920285c6594fa0bb35b6559fcd7, type: 2}
-  m_PrefabInternal: {fileID: 902310037}
-  serializedVersion: 4
-  m_Component:
-  - 4: {fileID: 1105573337}
-  m_Layer: 0
-  m_Name: BeachTop
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1105573337
-Transform:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 400002, guid: ade13920285c6594fa0bb35b6559fcd7, type: 2}
-  m_PrefabInternal: {fileID: 902310037}
-  m_GameObject: {fileID: 1105573336}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 287.369965, y: 904.619751, z: 947.808594}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children:
-  - {fileID: 551255397}
-  m_Father: {fileID: 205838336}
 --- !u!1 &1486548638
 GameObject:
   m_ObjectHideFlags: 0
