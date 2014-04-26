@@ -20,11 +20,6 @@ namespace CapsaicinGames.Shark
 
         void Update()
         {
-            if (SharkNearby())
-            {
-                panicMode = true;
-            }
-
             if (!onBeach && OnTheBeach())
             {
                 onBeach = true;
@@ -44,6 +39,7 @@ namespace CapsaicinGames.Shark
         void FixedUpdate() 
         {
             var direction = CalculateDirection();
+            panicMode = panicMode || direction.sqrMagnitude > 0.15f;
 
             rigidbody.AddForce(direction * fleeForce);
         }
@@ -51,28 +47,28 @@ namespace CapsaicinGames.Shark
         // Works out the direction for the swimmer to move in
         Vector3 CalculateDirection()
         {
-            var steerAwayFromShark = SteerAwayFromShark();
+            var steerAwayFromShark = SteerAwayFromTerror();
             var steerTowardsBeach = SteerTowardsBeach();
 
             return (steerAwayFromShark + steerTowardsBeach).normalized;
         }
 
         // The direction away from the shark from the swimmer
-        Vector3 SteerAwayFromShark()
+        Vector3 SteerAwayFromTerror()
         {
-            var awayFromShark = transform.position - shark.transform.position;
-            var distance = awayFromShark.magnitude;
+            var steerDirAndTerror = 
+                TerrorMap.TerrorMap.Instance.CalculateMinimumTerrorDirection(transform.position);
 
-            // You might have been eaten!
-            if (distance == 0)
+            if (steerDirAndTerror == Vector4.zero)
             {
-                return Vector3.forward * sharkFleeStrength;
+                return Vector3.zero;
             }
-
-            var steerDirection = awayFromShark / distance;
-            var normalisedDistance = distance / proximityTrigger;
-
-            return Mathf.Lerp(sharkFleeStrength, 0, normalisedDistance) * steerDirection;
+            else
+            {
+                var dir = (Vector3)steerDirAndTerror;
+                var steer = dir * steerDirAndTerror.w * sharkFleeStrength;
+                return steer;
+            }
         }
 
         // The direction of the beach from the swimmer
@@ -84,22 +80,6 @@ namespace CapsaicinGames.Shark
             }
 
             return -beach.transform.forward;
-        }
-
-        // Checks to see if a shark is nearby to the swimmer.
-        private bool SharkNearby()
-        {
-            Vector3 offset = shark.transform.position - transform.position;
-            float distance = offset.sqrMagnitude;
-
-            if (distance < proximityTrigger * proximityTrigger)
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }    
         }
 
         // Detects if the swimmer is on the beach or not
