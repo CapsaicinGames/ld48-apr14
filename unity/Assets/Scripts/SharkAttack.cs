@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+
 public class SharkAttack : MonoBehaviour 
 {
     enum MouthState
@@ -11,6 +12,7 @@ public class SharkAttack : MonoBehaviour
     };
 
     public GameObject childMesh;
+    public GameObject cameraObject;
     public float moneyShotTimeScale;
     public float YoffsetNoControl;
     public float YoffsetAttack;
@@ -64,6 +66,9 @@ public class SharkAttack : MonoBehaviour
         if (rigidbody.position.y > YoffsetNoControl)
         {
             childMesh.renderer.material.color = Color.red;
+
+            cameraObject.GetComponent<SharkAttackCamera>().enabled = true;
+            cameraObject.GetComponent<FollowCamera>().enabled = false;
         }
 
         // Attack time if doing a decent jump and holding a swimmer
@@ -83,13 +88,14 @@ public class SharkAttack : MonoBehaviour
             {
                 Time.timeScale = moneyShotTimeScale;
             }
-
         }
 
         if (rigidbody.position.y <= YoffsetNoControl)
         {
             Time.timeScale = 1f;
             childMesh.renderer.material.color = Color.green;
+            cameraObject.GetComponent<SharkAttackCamera>().enabled = false;
+            cameraObject.GetComponent<FollowCamera>().enabled = true;
         }
 
         if (performedEat)
