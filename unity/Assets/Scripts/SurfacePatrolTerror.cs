@@ -16,9 +16,10 @@ public class SurfacePatrolTerror : MonoBehaviour
     void Update()
     {
         var parentRigidBody = transform.parent.rigidbody;
+        float speed = Mathf.Max(10f, parentRigidBody.velocity.magnitude);
+        float stampInterval = 1.5f * m_worldRadius / speed;
 
         m_stampTimer += Time.deltaTime;
-        float stampInterval = 0f;
         while (m_stampTimer >= stampInterval)
         {
             float depthTerror = 
@@ -28,9 +29,6 @@ public class SurfacePatrolTerror : MonoBehaviour
                 TerrorMap.Instance.WriteEvent(transform.position, m_worldRadius, depthTerror);
             }
             m_stampTimer -= stampInterval;
-
-            float speed = Mathf.Max(5f, parentRigidBody.velocity.magnitude);
-            stampInterval = m_worldRadius / speed;
         }
     }
 }
