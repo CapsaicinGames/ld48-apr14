@@ -3,60 +3,71 @@ using System.Collections;
 
 public class PlayerController : MonoBehaviour 
 {
-    public float steeringSensitivity;
     public float speedScalar;
-    public float minSteeringScalar;
-    public float maxSteeringScalar;
-    public float speedSteeringFactor;
-    public float reversePenaltyFactor;
+    public Vector2 rotationScalar;
+    public float airDrag;
+    public float waterDrag;
 
-    private Vector3 previousWorldTransform;
+    private SharkInput m_input;
+    private Vector2 m_angularVelocity;
+
+    enum ControlState
+    {
+        Air,
+        Water,
+    }
+    private ControlState m_controlState;
+
+    void Start()
+    {
+        m_input = GetComponent<SharkInput>();
+        SetControlState(ControlState.Water);
+    }
 
 	// Update is called once per frame
 	void FixedUpdate () 
     {
-        float forward = -Input.GetAxis("ForwardAxis");
-        float steeringLR = Input.GetAxis("Horizontal");
-        float steeringUD = Input.GetAxis("Vertical");
-
-        if (forward < 0f)
-        {
-            forward *= reversePenaltyFactor;
-        }
-
-        rigidbody.AddRelativeForce(0f, 0f, forward * speedScalar);
+        var desiredControlState = 
+            transform.position.y > 0f ? ControlState.Air : ControlState.Water;
+        SetControlState(desiredControlState);
         
-        float currentSpeedMultiplier = (float)rigidbody.velocity.magnitude;
-        if (currentSpeedMultiplier < minSteeringScalar)
-        {
-            currentSpeedMultiplier = minSteeringScalar;
-        }
-        else if (currentSpeedMultiplier > maxSteeringScalar)
-        {
-            currentSpeedMultiplier = maxSteeringScalar;
-        }
-
-        currentSpeedMultiplier *= speedSteeringFactor;
-
-        float pitch = steeringUD * steeringSensitivity * currentSpeedMultiplier;
-        float yaw = steeringLR * steeringSensitivity * currentSpeedMultiplier;
-        bool isTurning = Mathf.Approximately(pitch, 0f) == false || Mathf.Approximately(yaw, 0f) == false;
-        if (isTurning)
-        {
-            Vector3 requiredInput = new Vector3(steeringUD * steeringSensitivity * currentSpeedMultiplier, 0, 0);
-
-            Vector3 worldReqInput = transform.TransformDirection(requiredInput) + new Vector3(0, steeringLR * steeringSensitivity * currentSpeedMultiplier, 0);
-            rigidbody.angularVelocity = worldReqInput;
-            previousWorldTransform = worldReqInput;
-        }
-        else
-        {
-            previousWorldTransform = previousWorldTransform * 0.9f;
-            rigidbody.angularVelocity = previousWorldTransform;
-        }
-        
-
+        var desiredAngularVel = 
+            m_controlState == ControlState.Water ? DoWaterControl() : DoAirControl();
+        UpdateRotation(desiredAngularVel);
 	}
+
+    void SetControlState(ControlState newControlState) 
+    {
+        if (newControlState == m_controlState)
+        {
+            return;
+        }
+
+        switch(newControlState) 
+        {
+        case ControlState.Air:
+            rigidbody.useGravity = true;
+            rigidbody.drag = airDrag;
+            break;
+        case ControlState.Water:
+            rigidbody.useGravity = false;
+            rigidbody.drag = waterDrag;
+            break;
+        }
+        m_controlState = newControlState;
+    }
+
+    void UpdateRotation(Vector2 desiredVelocity) 
+    {
+        m_angularVelocity = 
+            Vector2.Lerp(m_angularVelocity, desiredVelocity, rigidbody.angularDrag);
+
+        var desiredPitchDelta = m_angularVelocity.x * Time.fixedDeltaTime;
+        transform.Rotate(Vector3.right * desiredPitchDelta);
+        
+        var desiredYawDelta = m_angularVelocity.y * Time.fixedDeltaTime;
+        transform.Rotate(Vector3.up * desiredYawDelta, Space.World);        
+    }
 
     void OnTriggerEnter(Collider other)
     {
@@ -75,5 +86,28 @@ public class PlayerController : MonoBehaviour
                 Destroy(rb);
             }
         }
+    }
+
+    Vector2 DoAirControl()
+    {
+        return Vector2.zero;
+    }
+
+    Vector2 DoWaterControl()
+    {
+        float speedInput = m_input.GetSpeed();
+
+        var desiredForwardForce = speedInput * speedScalar;
+        rigidbody.AddRelativeForce(Vector3.forward * desiredForwardForce);
+
+        float pitchSteering = m_input.GetVertical();
+        var desiredPitchVel = pitchSteering * rotationScalar.y;
+
+        float yawSteering = m_input.GetHorizontal();
+        var desiredYawVel = yawSteering * rotationScalar.x;
+
+        var desiredVelocity = new Vector2(desiredPitchVel, desiredYawVel);
+
+        return desiredVelocity;
     }
 }
