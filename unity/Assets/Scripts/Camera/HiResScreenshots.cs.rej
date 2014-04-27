@@ -1,0 +1,9 @@
+diff a/unity/Assets/Scripts/Camera/HiResScreenshots.cs b/unity/Assets/Scripts/Camera/HiResScreenshots.cs	(rejected hunks)
+@@ -0,6 +0,7 @@
+ 
+     void LateUpdate()
+     {
++//        takeHiResShot |= Input.GetKeyDown("k");
+         takeHiResShot |= Input.GetKeyDown("joystick button 0");
+         if (takeHiResShot)
+         {
