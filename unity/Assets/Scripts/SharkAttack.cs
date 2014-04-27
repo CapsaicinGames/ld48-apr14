@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
-
+using CapsaicinGames.TerrorMap;
 
 public class SharkAttack : MonoBehaviour 
 {
@@ -16,6 +16,8 @@ public class SharkAttack : MonoBehaviour
     public GameObject gibbObject;
 
     public AudioClip[] chompSounds;
+
+    public float gibbTerrorStrength;
 
     public float moneyShotTimeScale;
     public int gibbsPerSwimmer;
@@ -108,6 +110,13 @@ public class SharkAttack : MonoBehaviour
                     newGibb.transform.position = transform.TransformPoint(0f, 0f, 3f);
                     Destroy(newGibb, gibbLife);
                 }
+                if (transform.position.y > 0f) 
+                {
+                    TerrorMap.Instance.WriteEvent(transform.position,
+                                                  gibbRadius,
+                                                  gibbTerrorStrength);
+                }
+                
                 break;
             }
         }

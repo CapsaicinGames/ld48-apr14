@@ -696,6 +696,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 4ae5b6a0a33d5c5458771443c26b0175, type: 3}
   - {fileID: 8300000, guid: 8e71ea6a87196e246b049b905fdc71f7, type: 3}
   - {fileID: 8300000, guid: 4a46661ae459c2146b20b78333ee70d3, type: 3}
+  gibbTerrorStrength: 1
   moneyShotTimeScale: .25
   gibbsPerSwimmer: 30
   gibbLife: 15
