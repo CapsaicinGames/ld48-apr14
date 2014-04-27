@@ -13,6 +13,7 @@ GameObject:
   - 54: {fileID: 5400000}
   - 114: {fileID: 11400002}
   - 82: {fileID: 8200004}
+  - 114: {fileID: 11400020}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -119,6 +120,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 400012}
   - 114: {fileID: 11400014}
+  - 114: {fileID: 11400022}
   m_Layer: 0
   m_Name: Terrorisers
   m_TagString: Untagged
@@ -669,7 +671,12 @@ MonoBehaviour:
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
-  screamSound: {fileID: 8300000, guid: 97591466882de724c84585393811ea7b, type: 3}
+  screamSounds:
+  - {fileID: 8300000, guid: 5d5b21889d6cabd4fbe3b595cc93957b, type: 3}
+  - {fileID: 8300000, guid: e1ec0ceafa410b34c8faf0c4c18d53ba, type: 3}
+  - {fileID: 8300000, guid: ec9a380edcca74a4f8a725203abf12e6, type: 3}
+  - {fileID: 8300000, guid: 08c26047e7bc0ad489ae29d6ab26ebb3, type: 3}
+  - {fileID: 8300000, guid: 97591466882de724c84585393811ea7b, type: 3}
 --- !u!114 &11400002
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -690,8 +697,6 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 8e71ea6a87196e246b049b905fdc71f7, type: 3}
   - {fileID: 8300000, guid: 4a46661ae459c2146b20b78333ee70d3, type: 3}
   moneyShotTimeScale: .25
-  YoffsetNoControl: 0
-  YoffsetAttack: 2
   gibbsPerSwimmer: 30
   gibbLife: 15
   gibbRadius: 8
@@ -772,6 +777,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f45d0bb95f934f1f84cfae1ef233fc0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_maxHeight: 0
   m_maxDepth: -1.5
   m_terror: .349999994
   m_worldRadius: 15
@@ -801,6 +807,34 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   resWidth: 1920
   resHeight: 1080
+--- !u!114 &11400020
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100000}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ae684c8bdc91548e3bca2c1b46d15ae5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_leaveWaterHeight: .5
+  m_enterWaterHeight: 0
+--- !u!114 &11400022
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100012}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e2d01ca9dc0ba440cb8d01a1dd8e1d39, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_bellySplashRadiusStrength: {x: 35, y: .899999976}
+  m_backFlopRadiusStrength: {x: 45, y: .899999976}
+  m_noseInRadiusStrength: {x: 30, y: .75}
+  m_tailInRadiusStrength: {x: 35, y: .75}
 --- !u!124 &12400000
 Behaviour:
   m_ObjectHideFlags: 1
