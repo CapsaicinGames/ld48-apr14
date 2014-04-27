@@ -777,7 +777,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f45d0bb95f934f1f84cfae1ef233fc0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_maxHeight: 0
   m_maxDepth: -1.5
   m_terror: .349999994
   m_worldRadius: 15
@@ -831,10 +830,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e2d01ca9dc0ba440cb8d01a1dd8e1d39, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_bellySplashRadiusStrength: {x: 35, y: .899999976}
-  m_backFlopRadiusStrength: {x: 45, y: .899999976}
-  m_noseInRadiusStrength: {x: 30, y: .75}
-  m_tailInRadiusStrength: {x: 35, y: .75}
+  m_bellySplashRadiusStrength: {x: 35, y: 1}
+  m_backFlopRadiusStrength: {x: 45, y: 1}
+  m_noseInRadiusStrength: {x: 30, y: .800000012}
+  m_tailInRadiusStrength: {x: 35, y: .800000012}
+  m_moneyShotRadiusStrength: {x: 55, y: 1}
+  m_displayRadiusStrength: {x: 45, y: 1}
+  m_otherJumpRadiusStrength: {x: 35, y: 1}
 --- !u!124 &12400000
 Behaviour:
   m_ObjectHideFlags: 1
