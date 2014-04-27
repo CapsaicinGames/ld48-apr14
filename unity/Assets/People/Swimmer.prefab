@@ -144,21 +144,16 @@ MonoBehaviour:
   fleeForce: 4
   panicMode: 0
   onBeach: 0
-  m_speedFromTerror:
+  m_dragFromTerror:
     serializedVersion: 2
     m_Curve:
     - time: 0
-      value: .200000048
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-    - time: .599999964
       value: 1
       inSlope: 0
       outSlope: 0
       tangentMode: 0
     - time: 1
-      value: 0
+      value: 1
       inSlope: 0
       outSlope: 0
       tangentMode: 0
