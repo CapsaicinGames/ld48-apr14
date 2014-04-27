@@ -583,6 +583,10 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 11400000, guid: f56d31d0c30fe86409d8d9ea0a38843f, type: 2}
+      propertyPath: screamSounds.Array.size
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: f56d31d0c30fe86409d8d9ea0a38843f, type: 2}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -611,6 +615,26 @@ Prefab:
       propertyPath: m_LocalRotation.w
       value: -1.62920685e-07
       objectReference: {fileID: 0}
+    - target: {fileID: 11400000, guid: f56d31d0c30fe86409d8d9ea0a38843f, type: 2}
+      propertyPath: screamSounds.Array.data[0]
+      value: 
+      objectReference: {fileID: 8300000, guid: 5d5b21889d6cabd4fbe3b595cc93957b, type: 3}
+    - target: {fileID: 11400000, guid: f56d31d0c30fe86409d8d9ea0a38843f, type: 2}
+      propertyPath: screamSounds.Array.data[1]
+      value: 
+      objectReference: {fileID: 8300000, guid: e1ec0ceafa410b34c8faf0c4c18d53ba, type: 3}
+    - target: {fileID: 11400000, guid: f56d31d0c30fe86409d8d9ea0a38843f, type: 2}
+      propertyPath: screamSounds.Array.data[2]
+      value: 
+      objectReference: {fileID: 8300000, guid: ec9a380edcca74a4f8a725203abf12e6, type: 3}
+    - target: {fileID: 11400000, guid: f56d31d0c30fe86409d8d9ea0a38843f, type: 2}
+      propertyPath: screamSounds.Array.data[3]
+      value: 
+      objectReference: {fileID: 8300000, guid: 08c26047e7bc0ad489ae29d6ab26ebb3, type: 3}
+    - target: {fileID: 11400000, guid: f56d31d0c30fe86409d8d9ea0a38843f, type: 2}
+      propertyPath: screamSounds.Array.data[4]
+      value: 
+      objectReference: {fileID: 8300000, guid: 97591466882de724c84585393811ea7b, type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: f56d31d0c30fe86409d8d9ea0a38843f, type: 2}
   m_RootGameObject: {fileID: 1486548638}
@@ -2472,7 +2496,12 @@ MonoBehaviour:
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
-  screamSound: {fileID: 8300000, guid: 97591466882de724c84585393811ea7b, type: 3}
+  screamSounds:
+  - {fileID: 8300000, guid: 5d5b21889d6cabd4fbe3b595cc93957b, type: 3}
+  - {fileID: 8300000, guid: e1ec0ceafa410b34c8faf0c4c18d53ba, type: 3}
+  - {fileID: 8300000, guid: ec9a380edcca74a4f8a725203abf12e6, type: 3}
+  - {fileID: 8300000, guid: 08c26047e7bc0ad489ae29d6ab26ebb3, type: 3}
+  - {fileID: 8300000, guid: 97591466882de724c84585393811ea7b, type: 3}
 --- !u!114 &1486548641
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -121,6 +121,7 @@ public class SharkAttack : MonoBehaviour
         {
             if (child.tag == "Swimmer")
             {
+                audio.pitch = Random.Range(0.8f, 1.2f);
                 audio.PlayOneShot(chompSounds[Random.Range(0,chompSounds.Length-1)], 1.0f);
                 Destroy(child.gameObject);
                 for (int i = 0; i < gibbsPerSwimmer; ++i)
