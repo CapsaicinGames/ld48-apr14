@@ -57,8 +57,6 @@ namespace CapsaicinGames.Shark
                 {
                     OnEndGameCallback();
                 }
-
-                SceneControl.RestartGame();
             }
         }
 
