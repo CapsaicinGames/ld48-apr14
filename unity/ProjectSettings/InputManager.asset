@@ -186,8 +186,8 @@ InputManager:
     descriptiveNegativeName: Right Bumper
     negativeButton: joystick button 5
     positiveButton: joystick button 4
-    altNegativeButton: 
-    altPositiveButton: 
+    altNegativeButton: ','
+    altPositiveButton: .
     gravity: 1000
     dead: .00100000005
     sensitivity: 1000
