@@ -831,13 +831,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e2d01ca9dc0ba440cb8d01a1dd8e1d39, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_bellySplashRadiusStrength: {x: 35, y: 1}
-  m_backFlopRadiusStrength: {x: 45, y: 1}
+  m_bellySplashRadiusStrength: {x: 35, y: .899999976}
+  m_backFlopRadiusStrength: {x: 45, y: .899999976}
   m_noseInRadiusStrength: {x: 30, y: .800000012}
   m_tailInRadiusStrength: {x: 35, y: .800000012}
-  m_moneyShotRadiusStrength: {x: 55, y: 1}
-  m_displayRadiusStrength: {x: 45, y: 1}
-  m_otherJumpRadiusStrength: {x: 35, y: 1}
+  m_moneyShotRadiusStrength: {x: 55, y: .899999976}
+  m_displayRadiusStrength: {x: 45, y: .899999976}
+  m_otherJumpRadiusStrength: {x: 35, y: .899999976}
 --- !u!124 &12400000
 Behaviour:
   m_ObjectHideFlags: 1
