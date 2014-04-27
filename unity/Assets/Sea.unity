@@ -201,6 +201,10 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 11400002, guid: f56d31d0c30fe86409d8d9ea0a38843f, type: 2}
+      propertyPath: chompSounds.Array.size
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: f56d31d0c30fe86409d8d9ea0a38843f, type: 2}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -229,6 +233,30 @@ Prefab:
       propertyPath: m_LocalRotation.w
       value: -1.62920685e-07
       objectReference: {fileID: 0}
+    - target: {fileID: 11400002, guid: f56d31d0c30fe86409d8d9ea0a38843f, type: 2}
+      propertyPath: chompSound
+      value: 
+      objectReference: {fileID: 8300000, guid: cbf8b07cab82f6d4ebd7351b2f5b8c0f, type: 3}
+    - target: {fileID: 11400000, guid: f56d31d0c30fe86409d8d9ea0a38843f, type: 2}
+      propertyPath: screamSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 97591466882de724c84585393811ea7b, type: 3}
+    - target: {fileID: 11400002, guid: f56d31d0c30fe86409d8d9ea0a38843f, type: 2}
+      propertyPath: chompSounds.Array.data[0]
+      value: 
+      objectReference: {fileID: 8300000, guid: cbf8b07cab82f6d4ebd7351b2f5b8c0f, type: 3}
+    - target: {fileID: 11400002, guid: f56d31d0c30fe86409d8d9ea0a38843f, type: 2}
+      propertyPath: chompSounds.Array.data[1]
+      value: 
+      objectReference: {fileID: 8300000, guid: 4ae5b6a0a33d5c5458771443c26b0175, type: 3}
+    - target: {fileID: 11400002, guid: f56d31d0c30fe86409d8d9ea0a38843f, type: 2}
+      propertyPath: chompSounds.Array.data[2]
+      value: 
+      objectReference: {fileID: 8300000, guid: 8e71ea6a87196e246b049b905fdc71f7, type: 3}
+    - target: {fileID: 11400002, guid: f56d31d0c30fe86409d8d9ea0a38843f, type: 2}
+      propertyPath: chompSounds.Array.data[3]
+      value: 
+      objectReference: {fileID: 8300000, guid: 4a46661ae459c2146b20b78333ee70d3, type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: f56d31d0c30fe86409d8d9ea0a38843f, type: 2}
   m_RootGameObject: {fileID: 1486548638}
@@ -1009,6 +1037,7 @@ GameObject:
   - 114: {fileID: 1486548640}
   - 54: {fileID: 1486548639}
   - 114: {fileID: 1486548645}
+  - 82: {fileID: 1486548642}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -1151,6 +1180,7 @@ MonoBehaviour:
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
+  screamSound: {fileID: 8300000, guid: 97591466882de724c84585393811ea7b, type: 3}
 --- !u!114 &1486548641
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1164,6 +1194,64 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_steeringSensitivity: 3
+--- !u!82 &1486548642
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1486548638}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    - time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
 --- !u!4 &1486548644
 Transform:
   m_ObjectHideFlags: 0
@@ -1193,6 +1281,11 @@ MonoBehaviour:
   childMesh: {fileID: 683867523}
   cameraObject: {fileID: 135376855}
   gibbObject: {fileID: 100002, guid: 2d2391ce4558fb74e9eed719cbcc7543, type: 2}
+  chompSounds:
+  - {fileID: 8300000, guid: cbf8b07cab82f6d4ebd7351b2f5b8c0f, type: 3}
+  - {fileID: 8300000, guid: 4ae5b6a0a33d5c5458771443c26b0175, type: 3}
+  - {fileID: 8300000, guid: 8e71ea6a87196e246b049b905fdc71f7, type: 3}
+  - {fileID: 8300000, guid: 4a46661ae459c2146b20b78333ee70d3, type: 3}
   moneyShotTimeScale: .25
   YoffsetNoControl: 0
   YoffsetAttack: 2

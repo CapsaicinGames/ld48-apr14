@@ -27,6 +27,8 @@ public class PlayerController : MonoBehaviour
     public AnimationCurve autoLevelForceFromAngle;
     public AnimationCurve autoLevelForceFromDepth;
 
+    public AudioClip screamSound;
+
     private SharkInput m_input;
     private Vector2 m_angularVelocity;
 
@@ -102,7 +104,7 @@ public class PlayerController : MonoBehaviour
         //
         if (other.gameObject.tag == "Swimmer")
         {
-            //Destroy(other.gameObject);
+            audio.PlayOneShot(screamSound, 1.0f);
             other.transform.parent = transform;
             other.gameObject.BroadcastMessage("onGrabbed", SendMessageOptions.DontRequireReceiver);
             foreach (var col in other.gameObject.GetComponentsInChildren<Collider>())

@@ -15,6 +15,8 @@ public class SharkAttack : MonoBehaviour
     public GameObject cameraObject;
     public GameObject gibbObject;
 
+    public AudioClip[] chompSounds;
+
     public float moneyShotTimeScale;
     public float YoffsetNoControl;
     public float YoffsetAttack;
@@ -119,6 +121,7 @@ public class SharkAttack : MonoBehaviour
         {
             if (child.tag == "Swimmer")
             {
+                audio.PlayOneShot(chompSounds[Random.Range(0,chompSounds.Length-1)], 1.0f);
                 Destroy(child.gameObject);
                 for (int i = 0; i < gibbsPerSwimmer; ++i)
                 {
