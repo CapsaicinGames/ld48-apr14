@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
-
+using CapsaicinGames.TerrorMap;
 
 public class SharkAttack : MonoBehaviour 
 {
@@ -17,9 +17,9 @@ public class SharkAttack : MonoBehaviour
 
     public AudioClip[] chompSounds;
 
+    public float gibbTerrorStrength;
+
     public float moneyShotTimeScale;
-    public float YoffsetNoControl;
-    public float YoffsetAttack;
     public int gibbsPerSwimmer;
     // Life of new gibbs in seconds
     public float gibbLife;
@@ -51,10 +51,6 @@ public class SharkAttack : MonoBehaviour
             newMouthOpen = MouthState.Closed;
         }
 
-        /*if ((currentMouthOpen == MouthState.Closed) && (newMouthOpen == MouthState.Open))
-        {
-            currentMouthOpen = MouthState.Open;
-        }*/
         if ((currentMouthOpen == MouthState.Open) && (newMouthOpen == MouthState.Closed))
         {
             //currentMouthOpen = MouthState.Closed;
@@ -67,50 +63,31 @@ public class SharkAttack : MonoBehaviour
             // Store new non-neutral state of jaw
         }
 
-
-        // No swimming outside of the sea
-        if (rigidbody.position.y > YoffsetNoControl)
-        {
-            //childMesh.renderer.material.color = Color.red;
-
-        }
-
-        // Attack time if doing a decent jump and holding a swimmer
-        if (rigidbody.position.y > YoffsetAttack)
-        {
-            cameraObject.GetComponent<SharkAttackCamera>().enabled = true;
-            cameraObject.GetComponent<FollowCamera>().enabled = false;
-
-            bool haveSwimmer = false;
-            foreach (var child in gameObject.GetComponentsInChildren<Transform>())
-            {
-                if (child.tag == "Swimmer")
-                {
-                    haveSwimmer = true;
-                    //childMesh.renderer.material.color = Color.yellow;
-                }
-            }
-
-            if (haveSwimmer)
-            {
-                Time.timeScale = moneyShotTimeScale;
-            }
-        }
-
-        if (rigidbody.position.y <= YoffsetNoControl)
-        {
-            Time.timeScale = 1f;
-            //childMesh.renderer.material.color = Color.green;
-            cameraObject.GetComponent<SharkAttackCamera>().enabled = false;
-            cameraObject.GetComponent<FollowCamera>().enabled = true;
-        }
-
         if (performedEat)
         {
             EatSwimmer();
             performedEat = false;
         }
 	}
+
+    void OnLeaveWater(WaterLeaveEvent type)
+    {
+        cameraObject.GetComponent<SharkAttackCamera>().enabled = true;
+        cameraObject.GetComponent<FollowCamera>().enabled = false;
+
+        if (type == WaterLeaveEvent.MoneyShot)
+        {
+            Time.timeScale = moneyShotTimeScale;
+        }
+    }
+
+    void OnEnterWater(WaterEnterEvent type)
+    {
+        Time.timeScale = 1f;
+        //childMesh.renderer.material.color = Color.green;
+        cameraObject.GetComponent<SharkAttackCamera>().enabled = false;
+        cameraObject.GetComponent<FollowCamera>().enabled = true;
+    }
 
     void EatSwimmer()
     {
@@ -133,6 +110,13 @@ public class SharkAttack : MonoBehaviour
                     newGibb.transform.position = transform.TransformPoint(0f, 0f, 3f);
                     Destroy(newGibb, gibbLife);
                 }
+                if (transform.position.y > 0f) 
+                {
+                    TerrorMap.Instance.WriteEvent(transform.position,
+                                                  gibbRadius,
+                                                  gibbTerrorStrength);
+                }
+                
                 break;
             }
         }

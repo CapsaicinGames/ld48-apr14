@@ -16,7 +16,7 @@ namespace CapsaicinGames.Shark
         public bool panicMode = false;
         public bool onBeach = false;
 
-        public AnimationCurve m_speedFromTerror;
+        public AnimationCurve m_dragFromTerror;
 
         TerrorMap.PersonTerror m_terrorSource;
 
@@ -50,10 +50,11 @@ namespace CapsaicinGames.Shark
             var direction = CalculateDirection();
             panicMode = panicMode || direction.sqrMagnitude > 0.15f;
 
-            float terrorModifier = m_speedFromTerror.Evaluate(m_terrorSource.Terror);
+            float terrorDrag = m_dragFromTerror.Evaluate(m_terrorSource.Terror);
             Debug.DrawRay(transform.position + Vector3.right * 0.1f,
-                          Vector3.up * terrorModifier * 5f, Color.blue);
-            rigidbody.AddForce(direction * fleeForce * terrorModifier);
+                          Vector3.up * terrorDrag * 5f, Color.blue);
+            rigidbody.drag = terrorDrag;
+            rigidbody.AddForce(direction * fleeForce);
         }
 
         // Works out the direction for the swimmer to move in

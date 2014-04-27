@@ -1,15 +1,17 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 using System.IO;
 
 public class HiResScreenshots : MonoBehaviour
 {
-
     public int resWidth = 2550;
     public int resHeight = 3300;
 
     private bool takeHiResShot = false;
     private string screenShotFolder;
+
+    public List<byte[]> photos;
 
     public static string ScreenShotName(int width, int height)
     {
@@ -21,7 +23,9 @@ public class HiResScreenshots : MonoBehaviour
 
     public void Start()
     {
+        photos = new List<byte[]>();
         screenShotFolder = Application.dataPath + "/screenshots/";
+
         if (!Directory.Exists(screenShotFolder))
         {
             Directory.CreateDirectory(screenShotFolder);
@@ -38,6 +42,13 @@ public class HiResScreenshots : MonoBehaviour
         takeHiResShot |= Input.GetKeyDown("joystick button 0");
         if (takeHiResShot)
         {
+            if (photos.Count >= 5)
+            {
+                Debug.Log("Too many photos, not saving");
+                takeHiResShot = false;
+                return;
+            }
+
             RenderTexture rt = new RenderTexture(resWidth, resHeight, 24);
             camera.targetTexture = rt;
             Texture2D screenShot = new Texture2D(resWidth, resHeight, TextureFormat.RGB24, false);
@@ -49,9 +60,13 @@ public class HiResScreenshots : MonoBehaviour
             Destroy(rt);
             byte[] bytes = screenShot.EncodeToPNG();
             string filename = ScreenShotName(resWidth, resHeight);
-            System.IO.File.WriteAllBytes(filename, bytes);
-            Debug.Log(string.Format("Took screenshot to: {0}", filename));
+
+            photos.Add(bytes);
             takeHiResShot = false;
+            Debug.Log(string.Format("Added screenshot to memory. {0} photos in total now.", photos.Count));
+
+            Texture2D texture = new Texture2D(resWidth, resHeight);
+            texture.LoadImage(bytes);
         }
     }
 }
