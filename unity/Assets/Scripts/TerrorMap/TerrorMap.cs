@@ -90,6 +90,14 @@ namespace CapsaicinGames.TerrorMap
             return new Vector4(steer.x, steer.y, steer.z, maxTerror);
         }
 
+        public float SampleTerrorAt(Vector3 worldPos)
+        {
+            var gridPos = GridFromWorld(worldPos);
+            var terror = gridPos == s_invalid ? 0f
+                : m_map[(int)gridPos.x, (int)gridPos.y];
+            return terror;
+        }
+
         //////////////////////////////////////////////////
 
         [SerializeField] float m_mapRadius;
