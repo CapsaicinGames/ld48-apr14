@@ -12,14 +12,14 @@ SceneSettings:
     backfaceThreshold: 100
 --- !u!104 &2
 RenderSettings:
-  m_Fog: 0
-  m_FogColor: {r: .5, g: .5, b: .5, a: 1}
-  m_FogMode: 3
+  m_Fog: 1
+  m_FogColor: {r: .203827873, g: .2120675, b: .213235319, a: 1}
+  m_FogMode: 1
   m_FogDensity: .00999999978
   m_LinearFogStart: 0
   m_LinearFogEnd: 300
-  m_AmbientLight: {r: .200000003, g: .200000003, b: .200000003, a: 1}
-  m_SkyboxMaterial: {fileID: 0}
+  m_AmbientLight: {r: .463884056, g: .698016346, b: .970588207, a: 1}
+  m_SkyboxMaterial: {fileID: 2100000, guid: 9ba05f538ee36044da5cd2a4f14a8b18, type: 2}
   m_HaloStrength: .5
   m_FlareStrength: 1
   m_FlareFadeSpeed: 3
@@ -849,7 +849,7 @@ Light:
   m_Enabled: 1
   serializedVersion: 3
   m_Type: 1
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: .742647052, g: .728487015, b: .229346886, a: 1}
   m_Intensity: .5
   m_Range: 10
   m_SpotAngle: 30
@@ -2224,6 +2224,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 1456463903}
   - 114: {fileID: 1456463904}
+  - 114: {fileID: 1456463905}
   m_Layer: 0
   m_Name: Terrorisers
   m_TagString: Untagged
@@ -2257,6 +2258,25 @@ MonoBehaviour:
   m_maxDepth: -1.5
   m_terror: .349999994
   m_worldRadius: 15
+--- !u!114 &1456463905
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 11400022, guid: f56d31d0c30fe86409d8d9ea0a38843f,
+    type: 2}
+  m_PrefabInternal: {fileID: 206372431}
+  m_GameObject: {fileID: 1456463902}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e2d01ca9dc0ba440cb8d01a1dd8e1d39, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_bellySplashRadiusStrength: {x: 35, y: 1}
+  m_backFlopRadiusStrength: {x: 45, y: 1}
+  m_noseInRadiusStrength: {x: 30, y: .800000012}
+  m_tailInRadiusStrength: {x: 35, y: .800000012}
+  m_moneyShotRadiusStrength: {x: 55, y: 1}
+  m_displayRadiusStrength: {x: 45, y: 1}
+  m_otherJumpRadiusStrength: {x: 35, y: 1}
 --- !u!1 &1469479581
 GameObject:
   m_ObjectHideFlags: 0
@@ -2354,6 +2374,7 @@ GameObject:
   - 54: {fileID: 1486548639}
   - 114: {fileID: 1486548645}
   - 82: {fileID: 1486548642}
+  - 114: {fileID: 1486548643}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -2574,6 +2595,20 @@ AudioSource:
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
+--- !u!114 &1486548643
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 11400020, guid: f56d31d0c30fe86409d8d9ea0a38843f,
+    type: 2}
+  m_PrefabInternal: {fileID: 206372431}
+  m_GameObject: {fileID: 1486548638}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ae684c8bdc91548e3bca2c1b46d15ae5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_leaveWaterHeight: .5
+  m_enterWaterHeight: 0
 --- !u!4 &1486548644
 Transform:
   m_ObjectHideFlags: 0
